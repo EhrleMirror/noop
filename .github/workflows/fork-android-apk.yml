@@ -1,0 +1,71 @@
+# Personal fork: build the Android APKs and publish them as ONE rolling release ("android-latest"),
+# so the newest build can be downloaded straight to the phone from the Releases page.
+#
+# Runs on every push to main that touches the Android app, and on demand from the Actions tab.
+# No secrets needed: both APKs are signed with the committed android/fork-debug.keystore, so a new
+# build installs as an UPDATE over the previous one (same key, same app id).
+#
+#   NOOP-fork.apk       the real app (com.noop.whoop.staging) — installs beside the official NOOP app
+#   NOOP-fork-demo.apk  the same app preloaded with ~120 days of synthetic data, to try the UI without a strap
+name: Android APK (fork)
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'android/**'
+      - '.github/workflows/fork-android-apk.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: fork-android-apk
+  cancel-in-progress: true
+
+jobs:
+  apk:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: android
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: gradle/actions/wrapper-validation@v5
+      - uses: gradle/actions/setup-gradle@v5
+
+      - name: Build APKs
+        run: ./gradlew assembleFullRelease assembleDemoRelease -PstagingRelease
+
+      - name: Collect APKs
+        run: |
+          mkdir -p ../dist
+          cp app/build/outputs/apk/full/release/*.apk ../dist/NOOP-fork.apk
+          cp app/build/outputs/apk/demo/release/*.apk ../dist/NOOP-fork-demo.apk
+          ls -la ../dist
+
+      # Always kept as a workflow artifact too, even if the release step below fails.
+      - uses: actions/upload-artifact@v4
+        with:
+          name: noop-fork-apks
+          path: dist/*.apk
+          if-no-files-found: error
+
+      - name: Publish rolling release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          TAG="android-latest"
+          SHA="${GITHUB_SHA:0:7}"
+          DATE=$(date -u +%Y-%m-%d)
+          gh release delete "$TAG" --repo "$GITHUB_REPOSITORY" --cleanup-tag --yes 2>/dev/null || true
+          sleep 3
+          gh release create "$TAG" ../dist/NOOP-fork.apk ../dist/NOOP-fork-demo.apk \
+            --repo "$GITHUB_REPOSITORY" --prerelease --target "${{ github.sha }}" \
+            --title "NOOP fork · ${DATE} · ${SHA}" \
+            --notes "Newest Android build of this fork. Install **NOOP-fork.apk** on the phone (allow installs from this source once). **NOOP-fork-demo.apk** contains synthetic data to try the UI without a strap."

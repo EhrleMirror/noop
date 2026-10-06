@@ -62,7 +62,10 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.composed
@@ -975,7 +978,12 @@ fun BevelGauge(
  * "No Data" read with one consistent size + weight. Mirrors iOS `GlowRing.centerFont(diameter:)`.
  */
 fun glowRingCenterTextStyle(diameter: Dp, color: Color = Palette.textPrimary): TextStyle =
-    TextStyle(fontWeight = FontWeight.Bold, fontSize = (diameter.value * 0.36f).sp, color = color)
+    TextStyle(
+        fontFamily = NoopType.numeralFamily,
+        fontWeight = FontWeight.Bold,
+        fontSize = (diameter.value * 0.36f).sp,
+        color = color,
+    )
 
 @Composable
 fun GlowRing(
@@ -988,6 +996,8 @@ fun GlowRing(
     showsLabel: Boolean = true,
     format: (Double) -> String = { it.toInt().toString() },
     targetRange: ClosedFloatingPointRange<Float>? = null,
+    // Fork: an optional unit drawn after the number at half size (the strap app's "67%" dial read-out).
+    suffix: String? = null,
 ) {
     val target = fraction.coerceIn(0f, 1f)
     val renderStill = rememberPoseStill()
@@ -1102,11 +1112,23 @@ fun GlowRing(
                 },
         )
         if (showsLabel) {
-            Text(
-                text = format(animValue.toDouble()),
-                style = glowRingCenterTextStyle(diameter),
-                maxLines = 1,
-            )
+            val centerStyle = glowRingCenterTextStyle(diameter)
+            if (suffix.isNullOrEmpty()) {
+                Text(
+                    text = format(animValue.toDouble()),
+                    style = centerStyle,
+                    maxLines = 1,
+                )
+            } else {
+                Text(
+                    text = buildAnnotatedString {
+                        append(format(animValue.toDouble()))
+                        withStyle(SpanStyle(fontSize = centerStyle.fontSize * 0.5f)) { append(suffix) }
+                    },
+                    style = centerStyle,
+                    maxLines = 1,
+                )
+            }
         }
     }
 }

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Strings added by the personal fork (body measurements + Strap look). Kept in their own file so the
+  upstream strings.xml stays mergeable. Only English (default) and German are provided; every other
+  locale falls back to English, hence the MissingTranslation suppression.
+-->
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+    <!-- Body measurements -->
+    <string name="nav_body_measurements">Body measurements</string>
+    <string name="fork_body_subtitle">Weight and waist circumference, stored on this phone only.</string>
+    <string name="fork_body_weight">Weight</string>
+    <string name="fork_body_waist">Waist</string>
+    <string name="fork_body_add_entry">Add entry</string>
+    <string name="fork_body_edit_entry">Edit entry</string>
+    <string name="fork_body_no_entries">No entries yet</string>
+    <string name="fork_body_empty_hint">Log your weight and waist circumference regularly, ideally in the morning at the same time of day. The newest value also updates your profile, so calories and fitness estimates stay current.</string>
+    <string name="fork_body_change_since">%1$s since %2$s</string>
+    <string name="fork_body_history">History</string>
+    <string name="fork_body_range_30">30 D</string>
+    <string name="fork_body_range_90">90 D</string>
+    <string name="fork_body_range_365">1 Y</string>
+    <string name="fork_body_range_all">All</string>
+    <string name="fork_body_date">Date</string>
+    <string name="fork_body_weight_field">Weight (%1$s)</string>
+    <string name="fork_body_waist_field">Waist (%1$s)</string>
+    <string name="fork_body_range_hint">Leave a field empty to skip it. Weight %1$s to %2$s, waist %3$s to %4$s.</string>
+    <string name="fork_body_invalid">Please check the highlighted value.</string>
+    <string name="fork_body_save">Save</string>
+    <string name="fork_body_cancel">Cancel</string>
+    <string name="fork_body_delete">Delete</string>
+    <string name="fork_body_delete_title">Delete entry?</string>
+    <string name="fork_body_delete_message">The measurements from %1$s will be removed.</string>
+    <string name="fork_body_previous_day">Previous day</string>
+    <string name="fork_body_next_day">Next day</string>
+    <string name="fork_body_today">Today</string>
+    <string name="fork_body_whtr">Waist to height</string>
+    <string name="fork_body_whtr_note">Waist circumference divided by height (%1$s, from your profile). Below 0.5 is generally considered favourable.</string>
+    <string name="fork_body_hc_note">Your profile weight follows Health Connect (see Settings). Entries logged here are still kept as history.</string>
+    <string name="fork_body_chart_empty">Log at least two days to see a trend.</string>
+    <string name="fork_action_log_body">Log weight &amp; waist</string>
+
+    <!-- Strap look -->
+    <string name="fork_chart_strap">Strap</string>
+    <string name="fork_hero_sleep">Sleep</string>
+    <string name="fork_hero_recovery">Recovery</string>
+    <string name="fork_hero_strain">Strain</string>
+    <string name="fork_strap_theme_note">The Strap look always uses the dark theme.</string>
+</resources>

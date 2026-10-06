@@ -45,6 +45,7 @@ import androidx.compose.material.icons.filled.Hexagon
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Insights
 import androidx.compose.material.icons.filled.MonitorHeart
+import androidx.compose.material.icons.filled.MonitorWeight
 import androidx.compose.material.icons.filled.MoreHoriz
 import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material.icons.filled.Psychology
@@ -166,6 +167,8 @@ internal enum class Destination(
 
     // Group: Health
     Health("health", R.string.nav_health, Icons.Filled.MonitorHeart),
+    // Fork: hand-logged weight + waist circumference history.
+    BodyMeasurements(BODY_MEASUREMENTS_ROUTE, R.string.nav_body_measurements, Icons.Filled.MonitorWeight),
     Hydration("hydration", R.string.nav_hydration, Icons.Filled.WaterDrop),
     VitalSigns("vital_signs", R.string.nav_vital_signs, Icons.Filled.HealthAndSafety),
     VitalSignsDetail("vital_detail/{key}", R.string.nav_vital_signs, Icons.Filled.HealthAndSafety),
@@ -242,6 +245,7 @@ internal val drawerGroups: List<DrawerGroup> = listOf(
         Destination.Insights, Destination.Explore, Destination.Compare,
     ), defaultExpanded = true),
     DrawerGroup("Body", R.string.more_group_body, listOf(
+        Destination.BodyMeasurements,
         Destination.Live, Destination.Workouts, Destination.Health, Destination.VitalSigns,
         Destination.LabBook, Destination.Stress, Destination.Breathe, Destination.Intervals,
         Destination.Rhythm,
@@ -648,7 +652,11 @@ fun AppRoot(viewModel: AppViewModel = viewModel()) {
                         onOpenHealth = { nav.navigate(Destination.Health.route) },
                         // Every metric/vital card opens its OWN focused detail trend (vital_detail/<key>),
                         // not the shared Health hub (2026-07-03). Mirrors the iOS liquidCard metricDetail.
-                        onOpenMetric = { key -> nav.navigate("vital_detail/$key") },
+                        // Fork: the Weight tile hands over the Body measurements route instead of a vital key.
+                        onOpenMetric = { key ->
+                            if (key == BODY_MEASUREMENTS_ROUTE) nav.navigate(Destination.BodyMeasurements.route)
+                            else nav.navigate("vital_detail/$key")
+                        },
                         // A blank, uncalibrated WHOOP 4.0 Steps tile opens the same calibration screen as
                         // Settings. A normal push returns Back to Today (#1515).
                         onOpenStepsCalibration = { nav.navigate(Destination.StepsCalibration.route) },
@@ -737,6 +745,7 @@ fun AppRoot(viewModel: AppViewModel = viewModel()) {
                     )
                 }
                 composable(Destination.Hydration.route) { HydrationScreen(viewModel) }
+                composable(Destination.BodyMeasurements.route) { BodyMeasurementsScreen(viewModel) }
                 composable(Destination.VitalSigns.route) {
                     VitalSignsScreen(
                         vm = viewModel,
@@ -1278,6 +1287,8 @@ private val quickActions: List<QuickAction> = listOf(
     QuickAction(R.string.action_start_workout, Icons.Filled.FitnessCenter, Destination.Workouts.route),
     QuickAction(R.string.action_log_journal, Icons.Filled.Edit, Destination.Insights.route),
     QuickAction(R.string.action_breathe, Icons.Filled.Air, Destination.Breathe.route),
+    // Fork: one tap from the Today "+" to the weight / waist log.
+    QuickAction(R.string.fork_action_log_body, Icons.Filled.MonitorWeight, Destination.BodyMeasurements.route),
 )
 
 // MARK: - Navigation motion (README §Motion)

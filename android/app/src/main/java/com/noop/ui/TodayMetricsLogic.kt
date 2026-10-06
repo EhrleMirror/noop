@@ -3,6 +3,7 @@ package com.noop.ui
 import androidx.annotation.StringRes
 import com.noop.R
 import com.noop.analytics.ProfileWeightSync
+import com.noop.analytics.WeightReading
 import com.noop.data.AppleDaily
 import com.noop.data.WorkoutRow
 
@@ -79,9 +80,14 @@ internal fun latestWeightKg(
     apple: List<AppleDaily>,
     healthConnect: List<AppleDaily>,
     healthConnectOnly: Boolean = false,
+    // Fork: weights hand-logged on the Body measurements screen. Listed FIRST so that on a day both a
+    // manual entry and an import exist, the entry the user typed wins ([ProfileWeightSync.newest] keeps the
+    // first of equal days). Ignored with "Use weight from Health Connect" on, for the reason above.
+    manual: List<WeightReading> = emptyList(),
 ): Double? {
     val rows = if (healthConnectOnly) healthConnect else apple + healthConnect
-    return ProfileWeightSync.newest(HealthConnectWeightSync.weightReadings(rows))?.kg
+    val own = if (healthConnectOnly) emptyList() else manual
+    return ProfileWeightSync.newest(own + HealthConnectWeightSync.weightReadings(rows))?.kg
 }
 
 /**

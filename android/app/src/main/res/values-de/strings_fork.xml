@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- German strings of the personal fork (body measurements + Strap look). See values/strings_fork.xml. -->
+<resources>
+    <!-- Körpermaße -->
+    <string name="nav_body_measurements">Körpermaße</string>
+    <string name="fork_body_subtitle">Gewicht und Taillenumfang, nur auf diesem Gerät gespeichert.</string>
+    <string name="fork_body_weight">Gewicht</string>
+    <string name="fork_body_waist">Taille</string>
+    <string name="fork_body_add_entry">Eintrag hinzufügen</string>
+    <string name="fork_body_edit_entry">Eintrag bearbeiten</string>
+    <string name="fork_body_no_entries">Noch keine Einträge</string>
+    <string name="fork_body_empty_hint">Trag Gewicht und Taillenumfang regelmäßig ein, am besten morgens zur gleichen Zeit. Der neueste Wert aktualisiert auch dein Profil, damit Kalorien- und Fitness-Schätzungen aktuell bleiben.</string>
+    <string name="fork_body_change_since">%1$s seit %2$s</string>
+    <string name="fork_body_history">Verlauf</string>
+    <string name="fork_body_range_30">30 T</string>
+    <string name="fork_body_range_90">90 T</string>
+    <string name="fork_body_range_365">1 J</string>
+    <string name="fork_body_range_all">Alle</string>
+    <string name="fork_body_date">Datum</string>
+    <string name="fork_body_weight_field">Gewicht (%1$s)</string>
+    <string name="fork_body_waist_field">Taillenumfang (%1$s)</string>
+    <string name="fork_body_range_hint">Leeres Feld wird übersprungen. Gewicht %1$s bis %2$s, Taille %3$s bis %4$s.</string>
+    <string name="fork_body_invalid">Bitte den markierten Wert prüfen.</string>
+    <string name="fork_body_save">Speichern</string>
+    <string name="fork_body_cancel">Abbrechen</string>
+    <string name="fork_body_delete">Löschen</string>
+    <string name="fork_body_delete_title">Eintrag löschen?</string>
+    <string name="fork_body_delete_message">Die Messwerte vom %1$s werden entfernt.</string>
+    <string name="fork_body_previous_day">Vorheriger Tag</string>
+    <string name="fork_body_next_day">Nächster Tag</string>
+    <string name="fork_body_today">Heute</string>
+    <string name="fork_body_whtr">Taille zu Größe</string>
+    <string name="fork_body_whtr_note">Taillenumfang geteilt durch Körpergröße (%1$s, aus deinem Profil). Unter 0,5 gilt allgemein als günstig.</string>
+    <string name="fork_body_hc_note">Dein Profilgewicht folgt Health Connect (siehe Einstellungen). Einträge hier bleiben trotzdem als Verlauf erhalten.</string>
+    <string name="fork_body_chart_empty">Trag mindestens zwei Tage ein, um eine Entwicklung zu sehen.</string>
+    <string name="fork_action_log_body">Gewicht &amp; Taille eintragen</string>
+
+    <!-- Strap-Look -->
+    <string name="fork_chart_strap">Strap</string>
+    <string name="fork_hero_sleep">Schlaf</string>
+    <string name="fork_hero_recovery">Erholung</string>
+    <string name="fork_hero_strain">Belastung</string>
+    <string name="fork_strap_theme_note">Der Strap-Look nutzt immer das dunkle Design.</string>
+</resources>

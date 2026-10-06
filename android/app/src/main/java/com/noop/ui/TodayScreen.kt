@@ -174,6 +174,9 @@ import com.noop.analytics.SleepMarkType
 import com.noop.analytics.StepsEstimateEngine
 import com.noop.analytics.StrainScorer
 import com.noop.ble.WhoopModel
+import com.noop.data.BodyMeasurementStore
+import com.noop.data.BodyMetric
+import com.noop.analytics.WeightReading
 import com.noop.data.DailyMetric
 import com.noop.protocol.Whoop5RR
 import com.noop.widget.StressPoint
@@ -870,11 +873,18 @@ fun TodayScreen(
     // With "Use weight from Health Connect" ON it reads Health Connect only, the source the profile holds.
     var weightKg by remember { mutableStateOf<Double?>(null) }
     val weightFromHealthConnect = ProfileStore.from(context).useHealthConnectWeight
-    LaunchedEffect(days, weightFromHealthConnect) {
+    // Fork: re-read when a weight is logged on the Body measurements screen.
+    val bodySeq by BodyMeasurementStore.mutationSeq.collectAsStateWithLifecycle()
+    LaunchedEffect(days, weightFromHealthConnect, bodySeq) {
+        val manualWeights = runCatching {
+            BodyMeasurementStore(viewModel.repo).points(BodyMetric.WEIGHT)
+                .map { WeightReading(it.day, it.value) }
+        }.getOrDefault(emptyList())
         weightKg = latestWeightKg(
             viewModel.repo.appleDaily("apple-health", "0000-01-01", "9999-12-31"),
             viewModel.repo.appleDaily("health-connect", "0000-01-01", "9999-12-31"),
             healthConnectOnly = weightFromHealthConnect,
+            manual = manualWeights,
         )
     }
 
@@ -3065,137 +3075,165 @@ private fun ScoreHeroRow(
                 // empty / calibrating overlay; badges its recovery winner.
                 val effortRingTap = onOpenMetric?.let { open -> { open(HERO_EFFORT_METRIC_KEY) } }
                 val restRingTap = onOpenMetric?.let { open -> { open(HERO_REST_METRIC_KEY) } }
-                HeroRingColumn(
-                    modifier = Modifier.width(col),
-                    domain = DomainTheme.Charge,
-                    onInfo = { onScoreInfo(ScoreSection.CHARGE) },
-                    onRingTap = onChargeTap,
-                ) {
-                    Box(contentAlignment = Alignment.Center) {
-                        // #802: when today has no Charge yet but a prior night's value is carried, draw a
-                        // DIMMED (0.8 opacity) REAL ring filled to the carried value, matching the Rest
-                        // ring, rather than a bare number on an empty ring (which read as broken). Same
-                        // diameter so the self-sizing hero row is untouched; the dim + the carried "Last
-                        // night · <date>" caption mark it as carried, not today's fresh score. Mirrors iOS.
-                        val carried = if (recovery == null && recoveryCalibration == null) lastScoredCharge else null
-                        if (carried != null) {
-                            HeroScoreVessel(
-                                modifier = Modifier.alpha(0.8f),
-                                fraction = carried.value / 100.0,
-                                value = carried.value,
-                                tint = Palette.recoveryColor(carried.value),
-                                diameter = ring,
-                                showsValue = true,
-                                animated = heroVesselsAnimated,
-                                onTap = onChargeTap,
-                            )
-                        } else {
-                            HeroScoreVessel(
-                                fraction = (recovery ?: 0.0) / 100.0,
-                                value = recovery ?: 0.0,
-                                tint = Palette.recoveryColor(recovery ?: 0.0),
-                                diameter = ring,
-                                showsValue = recovery != null,
-                                animated = heroVesselsAnimated,
-                                onTap = onChargeTap,
-                            )
-                            // Empty ring + calibrating / no-data overlay (the carried case is above).
-                            if (recovery == null) RingEmptyOverlay(recoveryCalibration, diameter = ring)
+                // Fork: the Strap look reads like the strap app's home — SLEEP · RECOVERY · STRAIN, with
+                // a "%" after the two percentage scores and a fixed periwinkle sleep dial. The three
+                // columns are the same composables either way; only their order and labels change.
+                val strapHero = Palette.isStrap
+                val percentSuffix: String? = if (strapHero) "%" else null
+                val chargeColumn: @Composable () -> Unit = {
+                    HeroRingColumn(
+                        modifier = Modifier.width(col),
+                        domain = DomainTheme.Charge,
+                        onInfo = { onScoreInfo(ScoreSection.CHARGE) },
+                        onRingTap = onChargeTap,
+                        label = if (strapHero) uiString(R.string.fork_hero_recovery) else null,
+                    ) {
+                        Box(contentAlignment = Alignment.Center) {
+                            // #802: when today has no Charge yet but a prior night's value is carried, draw a
+                            // DIMMED (0.8 opacity) REAL ring filled to the carried value, matching the Rest
+                            // ring, rather than a bare number on an empty ring (which read as broken). Same
+                            // diameter so the self-sizing hero row is untouched; the dim + the carried "Last
+                            // night · <date>" caption mark it as carried, not today's fresh score. Mirrors iOS.
+                            val carried = if (recovery == null && recoveryCalibration == null) lastScoredCharge else null
+                            if (carried != null) {
+                                HeroScoreVessel(
+                                    modifier = Modifier.alpha(0.8f),
+                                    fraction = carried.value / 100.0,
+                                    value = carried.value,
+                                    tint = Palette.recoveryColor(carried.value),
+                                    diameter = ring,
+                                    showsValue = true,
+                                    animated = heroVesselsAnimated,
+                                    onTap = onChargeTap,
+                                    suffix = percentSuffix,
+                                )
+                            } else {
+                                HeroScoreVessel(
+                                    fraction = (recovery ?: 0.0) / 100.0,
+                                    value = recovery ?: 0.0,
+                                    tint = Palette.recoveryColor(recovery ?: 0.0),
+                                    diameter = ring,
+                                    showsValue = recovery != null,
+                                    animated = heroVesselsAnimated,
+                                    onTap = onChargeTap,
+                                    suffix = percentSuffix,
+                                )
+                                // Empty ring + calibrating / no-data overlay (the carried case is above).
+                                if (recovery == null) RingEmptyOverlay(recoveryCalibration, diameter = ring)
+                            }
+                            // No in-ring tap cue: the single tap affordance is the CHARGE-label chevron below
+                            // the ring (HeroRingColumn), matching iOS where the in-ring cue was removed.
                         }
-                        // No in-ring tap cue: the single tap affordance is the CHARGE-label chevron below
-                        // the ring (HeroRingColumn), matching iOS where the in-ring cue was removed.
                     }
                 }
                 // EFFORT, strain on the gauge, on the user's selected scale, as a GlowRing.
-                HeroRingColumn(
-                    modifier = Modifier.width(col),
-                    domain = DomainTheme.Effort,
-                    onInfo = { onScoreInfo(ScoreSection.EFFORT) },
-                    onRingTap = effortRingTap,
-                    ringTapLabel = uiString(
-                        R.string.today_action_open_detail,
-                        uiString(R.string.today_metric_effort),
-                    ),
-                ) {
-                    Box(contentAlignment = Alignment.Center) {
-                        // Show the optimal strain range as a gray segment in the Effort ring.
-                        // The range is derived from recovery (Charge) and shows where the current effort
-                        // should ideally fall. Returned as a 0..1 fraction (independent of the user's selected scale).
-                        val targetFraction = optimalFractionRange(recovery)
-                        HeroScoreVessel(
-                            fraction = if (effortOutOf > 0) effortVal / effortOutOf else 0.0,
-                            value = effortVal,
-                            tint = Palette.effortTint((strain ?: 0.0) / 100.0),
-                            diameter = ring,
-                            showsValue = strain != null,
-                            format = { if (effortScale == EffortScale.WHOOP) String.format(Locale.getDefault(), "%.1f", it) else it.toInt().toString() },
-                            animated = heroVesselsAnimated,
-                            onTap = effortRingTap,
-                            targetRange = targetFraction,
-                        )
-                        if (strain == null) RingNoData(diameter = ring)
+                val effortColumn: @Composable () -> Unit = {
+                    HeroRingColumn(
+                        modifier = Modifier.width(col),
+                        domain = DomainTheme.Effort,
+                        onInfo = { onScoreInfo(ScoreSection.EFFORT) },
+                        onRingTap = effortRingTap,
+                        ringTapLabel = uiString(
+                            R.string.today_action_open_detail,
+                            uiString(R.string.today_metric_effort),
+                        ),
+                        label = if (strapHero) uiString(R.string.fork_hero_strain) else null,
+                    ) {
+                        Box(contentAlignment = Alignment.Center) {
+                            // Show the optimal strain range as a gray segment in the Effort ring.
+                            // The range is derived from recovery (Charge) and shows where the current effort
+                            // should ideally fall. Returned as a 0..1 fraction (independent of the user's selected scale).
+                            val targetFraction = optimalFractionRange(recovery)
+                            HeroScoreVessel(
+                                fraction = if (effortOutOf > 0) effortVal / effortOutOf else 0.0,
+                                value = effortVal,
+                                tint = Palette.effortTint((strain ?: 0.0) / 100.0),
+                                diameter = ring,
+                                showsValue = strain != null,
+                                format = { if (effortScale == EffortScale.WHOOP) String.format(Locale.getDefault(), "%.1f", it) else it.toInt().toString() },
+                                animated = heroVesselsAnimated,
+                                onTap = effortRingTap,
+                                targetRange = targetFraction,
+                            )
+                            if (strain == null) RingNoData(diameter = ring)
+                        }
                     }
                 }
                 // REST, sleep composite 0–100. Its fixed-width box also anchors the card-level source badge:
                 // the badge may grow leftward, but its trailing edge always matches the Rest ring.
-                Box(modifier = Modifier.width(col)) {
-                    HeroRingColumn(
-                        modifier = Modifier.width(col),
-                        domain = DomainTheme.Rest,
-                        onInfo = { onScoreInfo(ScoreSection.REST) },
-                        onRingTap = restRingTap,
-                        ringTapLabel = uiString(
-                            R.string.today_action_open_detail,
-                            uiString(R.string.today_metric_rest),
-                        ),
-                        // #1164/#2012: the provisional state is now said BESIDE the number instead of
-                        // replacing it. See [HeroRingColumn]'s caption for why.
-                        caption = if (restPendingSync) {
-                            uiString(R.string.l10n_today_screen_pending_sync_cbe01f9e)
-                        } else {
-                            null
-                        },
-                    ) {
-                        Box(contentAlignment = Alignment.Center) {
-                            HeroScoreVessel(
-                                fraction = (restScore ?: 0.0) / 100.0,
-                                value = restScore ?: 0.0,
-                                tint = Palette.recoveryColor(restScore ?: 0.0),
-                                diameter = ring,
-                                showsValue = restScore != null,
-                                animated = heroVesselsAnimated,
-                                onTap = restRingTap,
-                            )
-                            if (restScore == null) {
-                                // #898: an aggregate-import user (a daily HRV/RHR import, no in-bed session) gets a
-                                // Charge from WatchRecovery but NO sleep_performance, so Rest used to read a bare
-                                // "No Data" next to a lit Charge , reading as broken. When a Charge IS present for the
-                                // day but Rest is absent, say WHY honestly ("Needs a tracked night") instead. We do
-                                // NOT fabricate a Rest number , an aggregate genuinely has no scored night. A day with
-                                // no Charge either (truly empty) keeps the plain "No Data". Mirrors iOS restRing.
-                                if (recovery != null) RingNeedsTrackedNight() else RingNoData(diameter = ring)
+                val restColumn: @Composable () -> Unit = {
+                    Box(modifier = Modifier.width(col)) {
+                        HeroRingColumn(
+                            modifier = Modifier.width(col),
+                            domain = DomainTheme.Rest,
+                            onInfo = { onScoreInfo(ScoreSection.REST) },
+                            onRingTap = restRingTap,
+                            ringTapLabel = uiString(
+                                R.string.today_action_open_detail,
+                                uiString(R.string.today_metric_rest),
+                            ),
+                            label = if (strapHero) uiString(R.string.fork_hero_sleep) else null,
+                            // #1164/#2012: the provisional state is now said BESIDE the number instead of
+                            // replacing it. See [HeroRingColumn]'s caption for why.
+                            caption = if (restPendingSync) {
+                                uiString(R.string.l10n_today_screen_pending_sync_cbe01f9e)
+                            } else {
+                                null
+                            },
+                        ) {
+                            Box(contentAlignment = Alignment.Center) {
+                                HeroScoreVessel(
+                                    fraction = (restScore ?: 0.0) / 100.0,
+                                    value = restScore ?: 0.0,
+                                    // Strap look: the sleep dial keeps its own colour instead of the
+                                    // recovery bands, as in the strap app.
+                                    tint = if (strapHero) Palette.restColor else Palette.recoveryColor(restScore ?: 0.0),
+                                    diameter = ring,
+                                    showsValue = restScore != null,
+                                    animated = heroVesselsAnimated,
+                                    onTap = restRingTap,
+                                    suffix = percentSuffix,
+                                )
+                                if (restScore == null) {
+                                    // #898: an aggregate-import user (a daily HRV/RHR import, no in-bed session) gets a
+                                    // Charge from WatchRecovery but NO sleep_performance, so Rest used to read a bare
+                                    // "No Data" next to a lit Charge , reading as broken. When a Charge IS present for the
+                                    // day but Rest is absent, say WHY honestly ("Needs a tracked night") instead. We do
+                                    // NOT fabricate a Rest number , an aggregate genuinely has no scored night. A day with
+                                    // no Charge either (truly empty) keeps the plain "No Data". Mirrors iOS restRing.
+                                    if (recovery != null) RingNeedsTrackedNight() else RingNoData(diameter = ring)
+                                }
                             }
                         }
+                        if (heroSourceLabel != null) {
+                            SourceBadge(
+                                text = heroSourceLabel,
+                                // #1160: the hero is theme-aware now, so its badge uses the flip-able text token.
+                                tint = Palette.textSecondary,
+                                modifier = Modifier
+                                    .align(Alignment.TopEnd)
+                                    // Measure the full label even when it is wider than the Rest ring, then
+                                    // let it overflow left while preserving the ring-aligned trailing edge.
+                                    .wrapContentWidth(unbounded = true, align = Alignment.End)
+                                    // #1502: the box is now the shared column width rather than the ring's,
+                                    // so inset by the slack to keep the badge's trailing edge on the RING —
+                                    // the alignment this anchor exists for.
+                                    .padding(end = ((col - ring) / 2).coerceAtLeast(0.dp))
+                                    // Match iOS: centre the pill on the card border, aligned with the Rest ring.
+                                    .offset(y = -(Metrics.space16 + Metrics.sourceBadgeHeight / 2))
+                                    .semantics { contentDescription = uiString(R.string.l10n_today_screen_source_herosourcelabel_d3363687, heroSourceLabel) },
+                            )
+                        }
                     }
-                    if (heroSourceLabel != null) {
-                        SourceBadge(
-                            text = heroSourceLabel,
-                            // #1160: the hero is theme-aware now, so its badge uses the flip-able text token.
-                            tint = Palette.textSecondary,
-                            modifier = Modifier
-                                .align(Alignment.TopEnd)
-                                // Measure the full label even when it is wider than the Rest ring, then
-                                // let it overflow left while preserving the ring-aligned trailing edge.
-                                .wrapContentWidth(unbounded = true, align = Alignment.End)
-                                // #1502: the box is now the shared column width rather than the ring's,
-                                // so inset by the slack to keep the badge's trailing edge on the RING —
-                                // the alignment this anchor exists for.
-                                .padding(end = ((col - ring) / 2).coerceAtLeast(0.dp))
-                                // Match iOS: centre the pill on the card border, aligned with the Rest ring.
-                                .offset(y = -(Metrics.space16 + Metrics.sourceBadgeHeight / 2))
-                                .semantics { contentDescription = uiString(R.string.l10n_today_screen_source_herosourcelabel_d3363687, heroSourceLabel) },
-                        )
-                    }
+                }
+                if (strapHero) {
+                    restColumn()
+                    chargeColumn()
+                    effortColumn()
+                } else {
+                    chargeColumn()
+                    effortColumn()
+                    restColumn()
                 }
             }
         }
@@ -3231,9 +3269,11 @@ private fun HeroRingColumn(
     // measured against the circle and ellipsised its own explanation mid-word ("strap history still o...")
     // while spilling past the ring's edge.
     caption: String? = null,
+    // Fork: replaces the domain word under the ring (the Strap look's SLEEP / RECOVERY / STRAIN).
+    label: String? = null,
     ring: @Composable () -> Unit,
 ) {
-    val domainLabel = uiString(
+    val domainLabel = label ?: uiString(
         when (domain) {
             DomainTheme.Charge -> R.string.today_metric_charge
             DomainTheme.Effort -> R.string.today_metric_effort
@@ -3374,6 +3414,8 @@ private fun HeroScoreVessel(
     // #2311 could move the handler up to HeroRingColumn.onRingTap and drop this. With the vessel
     // selectable again the forwarding has to come back, for that rendering only.
     onTap: (() -> Unit)? = null,
+    // Fork: unit drawn after the number ("%" in the Strap look). Half size on the ring.
+    suffix: String? = null,
 ) {
     val context = LocalContext.current
     val ringGauges = remember { NoopPrefs.todayRingGauges(context) }
@@ -3388,6 +3430,7 @@ private fun HeroScoreVessel(
             showsLabel = showsValue,
             format = format,
             targetRange = targetRange,
+            suffix = suffix,
         )
     } else Box(modifier = modifier.size(diameter), contentAlignment = Alignment.Center) {
         LiquidVessel(
@@ -3403,7 +3446,7 @@ private fun HeroScoreVessel(
             val numberSp = (diameter.value * 0.27f).coerceIn(20f, 30f)
             CountUpText(
                 value = value,
-                format = format,
+                format = if (suffix.isNullOrEmpty()) format else ({ v: Double -> format(v) + suffix }),
                 // #2346: the weight follows the Appearance preference. BOLD is the shipped look and the
                 // default, so nothing moves unless someone asks; SOFT falls back to `NoopType.number`'s
                 // own default, the weight every other number in the app already uses. The SIZE is not a
@@ -6167,7 +6210,7 @@ private fun MetricGrid(
     // with a windowed series: Recovery/Effort/Rest open their new trend details; the vitals +
     // Steps/Calories open the same vital_detail trends the Health cards use. Today's Charge DRIVERS stay
     // on the hero ring's breakdown sheet (its existing home) — the tile is the history view.
-    // Weight has no windowed detail yet -> not tappable (null keeps the tile inert rather than lying).
+    // Fork: Weight opens the Body measurements screen (history + logging) through the same callback.
     fun tapFor(metric: KeyMetric): (() -> Unit)? = when (metric) {
         KeyMetric.CHARGE -> ({ onOpenMetric("recovery") })
         KeyMetric.EFFORT -> ({ onOpenMetric("strain") })
@@ -6178,7 +6221,7 @@ private fun MetricGrid(
         KeyMetric.RESPIRATORY -> ({ onOpenMetric("resp") })
         KeyMetric.STEPS -> if (stepsOpenCalibration) onOpenStepsCalibration else ({ onOpenMetric("steps_est") })
         KeyMetric.CALORIES -> ({ onOpenMetric("active_kcal") })
-        KeyMetric.WEIGHT -> null
+        KeyMetric.WEIGHT -> ({ onOpenMetric(BODY_MEASUREMENTS_ROUTE) })
         // Same "skin" vital_detail key `dashboardCardMetricKey(DashboardCard.SKIN_TEMP)` already routes
         // to — confirmed a working destination there, so this tile opens the SAME screen "Your Cards"
         // already does, not a new/unverified route.

@@ -137,6 +137,9 @@ class MainActivity : ComponentActivity() {
             runCatching { SelfHostedPushScheduler.enqueueLaunchCatchUp(applicationContext) }
         }
 
+        // Fork: switch to the Strap look once, before the stores below read their preferences.
+        ForkDefaults.applyOnce(this)
+
         // Load the Light/Dark/System + chart-colour preferences before first composition so the theme
         // and chart ramps are correct from the very first frame (no flash).
         AppearancePrefs.load(this)

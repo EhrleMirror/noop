@@ -1588,16 +1588,27 @@ fun SettingsScreen(
                 // Titanium = brand gold/amber/blue ramps; Classic = throwback red→green readiness scale
                 // (cool→hot zones, green→red stress). Re-colours every gauge/chart, in both schemes.
                 SegmentedPillControl(
-                    items = listOf(ChartStyle.TITANIUM, ChartStyle.CLASSIC),
+                    // Fork: STRAP adds the strap app's colours on a true-black canvas (dark only).
+                    items = listOf(ChartStyle.STRAP, ChartStyle.TITANIUM, ChartStyle.CLASSIC),
                     selection = chartStyle,
                     label = {
-                        if (it == ChartStyle.CLASSIC) uiString(R.string.settings_chart_classic)
-                        else uiString(R.string.settings_chart_default)
+                        when (it) {
+                            ChartStyle.STRAP -> uiString(R.string.fork_chart_strap)
+                            ChartStyle.CLASSIC -> uiString(R.string.settings_chart_classic)
+                            else -> uiString(R.string.settings_chart_default)
+                        }
                     },
                     onSelect = { style ->
                         chartStyle = style
                         ChartStylePrefs.set(context, style)
                     },
+                )
+            }
+            if (chartStyle == ChartStyle.STRAP) {
+                Text(
+                    uiString(R.string.fork_strap_theme_note),
+                    style = NoopType.footnote,
+                    color = Palette.textTertiary,
                 )
             }
             SettingsRowDivider()

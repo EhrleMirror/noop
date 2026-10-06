@@ -160,11 +160,48 @@ val LightTokens = PaletteTokens(
     heroFill = Color(0xD9FFFFFF), heroBorder = Color(0x1A000000),
 )
 
+/**
+ * Fork: the "Strap" surface set — a true-black canvas with flat graphite cards, the look of the
+ * strap's own companion app. Always a DARK scheme (NoopTheme forces dark while the Strap chart style
+ * is active). The data colours come from [StrapRamp]; the token data fields below only matter for the
+ * few call sites that read a raw token instead of a Palette accessor, so they carry the same values.
+ */
+val StrapTokens = PaletteTokens(
+    surfaceBase = Color(0xFF000000), surfaceRaised = Color(0xFF16191D), surfaceOverlay = Color(0xFF1C2025),
+    surfaceInset = Color(0xFF101316), hairline = Color(0xFF22272D), hairlineStrong = Color(0xFF2E343B),
+    textPrimary = Color(0xFFFFFFFF), textSecondary = Color(0xFFB4BBC4), textTertiary = Color(0xFF7A828C),
+    glowAmbient = Color(0xFF0B1A2A),
+    accent = Color(0xFF2FA9FF), accentHover = Color(0xFF6CC3FF), accentMuted = Color(0xFF0D2A40), focusRing = Color(0xFF2FA9FF),
+    recovery000 = Color(0xFFFF0026), recovery030 = Color(0xFFFF0026), recovery055 = Color(0xFFFFDE00),
+    recovery078 = Color(0xFF16EC06), recovery100 = Color(0xFF16EC06),
+    strain000 = Color(0xFF0A7BC8), strain033 = Color(0xFF168FDB), strain066 = Color(0xFF239EEE), strain100 = Color(0xFF2FA9FF),
+    sleepAwake = Color(0xFFD5DAE1), sleepLight = Color(0xFF7FA7DB), sleepDeep = Color(0xFF4A63C9), sleepREM = Color(0xFFA58BE8),
+    zone1 = Color(0xFF8A9BAD), zone2 = Color(0xFF2FA9FF), zone3 = Color(0xFF16EC06), zone4 = Color(0xFFFFB100), zone5 = Color(0xFFFF0026),
+    statusPositive = Color(0xFF16EC06), statusWarning = Color(0xFFFFDE00), statusCritical = Color(0xFFFF0026),
+    metricCyan = Color(0xFF2FA9FF), metricPurple = Color(0xFFA58BE8), metricAmber = Color(0xFFFFB100), metricRose = Color(0xFFFF4D6A),
+    chargeColor = Color(0xFF16EC06), chargeDeep = Color(0xFF0FA605), chargeBright = Color(0xFF6BFF5C), chargeGlow = Color(0xFF16EC06),
+    effortColor = Color(0xFF0093E7), effortDeep = Color(0xFF0A6FB0), effortBright = Color(0xFF49B8FF), effortGlow = Color(0xFF0093E7),
+    restColor = Color(0xFF8EB2E6), restDeep = Color(0xFF5C7FB8), restBright = Color(0xFFA9C8F2), restGlow = Color(0xFF8EB2E6),
+    stressColor = Color(0xFFFFB100), stressDeep = Color(0xFF2FA9FF), stressBright = Color(0xFFFF6A00), stressGlow = Color(0xFFFFB100),
+    scenicCenter = Color(0xFF0B0D10), scenicEdge = Color(0xFF000000), scenicStar = Color(0xFFB4BBC4),
+    cardFillTop = Color(0xFF16191D), cardFillBottom = Color(0xFF131619),
+    gold = Color(0xFF2FA9FF), goldLight = Color(0xFF8FD0FF), goldDeep = Color(0xFF0A6FB0),
+    goldDeepText = Color(0xFFFFFFFF), signalYellow = Color(0xFFFFDE00),
+    titaniumTop = Color(0xFFF1F3F5), titaniumMid = Color(0xFFC9CFD4), titaniumLow = Color(0xFF969DA4), titaniumDeep = Color(0xFF6B737B),
+    tipCore = Color(0xFFFFFFFF),
+    // The score dials float directly on the black canvas, no hero card behind them.
+    heroFill = Color(0x00000000), heroBorder = Color(0x00000000),
+)
+
 // MARK: - Chart style (data-viz colour mode) + the Classic throwback ramps
 
 enum class ChartStyle(val storageValue: String, val label: String) {
     TITANIUM("titanium", "Titanium"),
-    CLASSIC("classic", "Classic");
+    CLASSIC("classic", "Classic"),
+
+    /** Fork: the strap app's colour language — banded red/yellow/green recovery, blue strain,
+     *  periwinkle sleep — on the true-black [StrapTokens] canvas. Implies the dark scheme. */
+    STRAP("strap", "Strap");
 
     companion object {
         fun fromStorage(raw: String?): ChartStyle = entries.firstOrNull { it.storageValue == raw } ?: TITANIUM
@@ -251,6 +288,31 @@ val ClassicLight = ClassicRamp(
     effortColor = Color(0xFF3A74C4), effortDeep = Color(0xFF284F9C), effortBright = Color(0xFF5E92D6),
     restColor = Color(0xFF3A80D6), restDeep = Color(0xFF203E73), restBright = Color(0xFF6A4FC0),
     stressColor = Color(0xFFCFA528), stressDeep = Color(0xFF2E9E4F), stressBright = Color(0xFFCB3A2F),
+)
+
+/**
+ * Fork: the Strap data ramps (dark only — the Strap style always runs on [StrapTokens]).
+ *
+ * Recovery is BANDED rather than a smooth blend: red up to 33, yellow 34 to 66, green from 67, the three
+ * zones the strap app reads out. The paired stops 0.335/0.336 and 0.665/0.666 make [Palette.sample] snap
+ * between bands instead of fading through orange. Strain is one blue, sleep a periwinkle.
+ */
+val StrapRamp = ClassicRamp(
+    recovery = listOf(
+        0.0f to Color(0xFFFF0026), 0.335f to Color(0xFFFF0026),
+        0.336f to Color(0xFFFFDE00), 0.665f to Color(0xFFFFDE00),
+        0.666f to Color(0xFF16EC06), 1.0f to Color(0xFF16EC06),
+    ),
+    strain = listOf(0.0f to Color(0xFF0A7BC8), 1.0f to Color(0xFF2FA9FF)),
+    stress = listOf(0.0f to Color(0xFF16EC06), 0.5f to Color(0xFFFFDE00), 1.0f to Color(0xFFFF0026)),
+    sleepAwake = Color(0xFFD5DAE1), sleepLight = Color(0xFF7FA7DB), sleepDeep = Color(0xFF4A63C9), sleepREM = Color(0xFFA58BE8),
+    zone1 = Color(0xFF8A9BAD), zone2 = Color(0xFF2FA9FF), zone3 = Color(0xFF16EC06), zone4 = Color(0xFFFFB100), zone5 = Color(0xFFFF0026),
+    statusPositive = Color(0xFF16EC06), statusWarning = Color(0xFFFFDE00), statusCritical = Color(0xFFFF0026),
+    metricCyan = Color(0xFF2FA9FF), metricPurple = Color(0xFFA58BE8), metricAmber = Color(0xFFFFB100), metricRose = Color(0xFFFF4D6A),
+    chargeColor = Color(0xFF16EC06), chargeDeep = Color(0xFF0FA605), chargeBright = Color(0xFF6BFF5C),
+    effortColor = Color(0xFF0093E7), effortDeep = Color(0xFF0A6FB0), effortBright = Color(0xFF49B8FF),
+    restColor = Color(0xFF8EB2E6), restDeep = Color(0xFF5C7FB8), restBright = Color(0xFFA9C8F2),
+    stressColor = Color(0xFFFFB100), stressDeep = Color(0xFF16EC06), stressBright = Color(0xFFFF0026),
 )
 
 // MARK: - Appearance preference (System / Light / Dark)
@@ -403,6 +465,8 @@ enum class ThemePreset(
     val backdrop: Boolean,
     val cardOpacity: Int,       // percent, 100 = solid
 ) {
+    // Fork: listed first so it heads the preset menu. Strap colours on true black, no day-cycle sky.
+    STRAP("strap", "Strap", AccentColor.WHOOP_BLUE, ChartStyle.STRAP, false, 100),
     MINT("mint", "Mint", AccentColor.MINT, ChartStyle.TITANIUM, true, 100),
     OCEAN("ocean", "Ocean", AccentColor.WHOOP_BLUE, ChartStyle.TITANIUM, true, 100),
     CLASSIC("classic", "Classic", AccentColor.WHOOP_BLUE, ChartStyle.CLASSIC, true, 100),

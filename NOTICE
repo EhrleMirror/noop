@@ -16,6 +16,10 @@ ZIPFoundation — https://github.com/weichsel/ZIPFoundation
   License: MIT
   Used for: reading WHOOP / Apple Health export archives during import.
 
+Barlow Semi Condensed (fork addition) — https://github.com/jpt/barlow
+  License: SIL Open Font License 1.1 (android/third_party/barlow/OFL.txt)
+  Used for: the condensed numerals and labels of the Android "Strap" look.
+
 The MIT license is permissive: these components may be used, modified, and
 redistributed (including commercially) on their own terms. When they are used as
 part of NOOP's combined work, the combined work as a whole is governed by NOOP's

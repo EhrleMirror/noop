@@ -23,10 +23,12 @@ import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.noop.R
 
 // MARK: - Palette — the "Titanium & Gold" re-skin (mirrors StrandDesign/Palette.swift)
 //
@@ -51,8 +53,16 @@ object Palette {
 
     // Chart style — when CLASSIC, the DATA accessors below return the throwback red→green ramps
     // (light/dark tuned). Reads ChartStylePrefs.style (snapshot state) so a flip re-colours live.
-    val isClassic: Boolean get() = ChartStylePrefs.style == ChartStyle.CLASSIC
-    private val classic: ClassicRamp get() = if (isLight) ClassicLight else ClassicDark
+    // Fork: the Strap style reuses the whole Classic data path (every accessor below branches on
+    // isClassic) with its own [StrapRamp], so it re-colours every gauge/chart with no call-site change.
+    val isClassic: Boolean get() = ChartStylePrefs.style != ChartStyle.TITANIUM
+    /** Fork: true while the Strap look is active (true-black canvas, strap colours, strap hero order). */
+    val isStrap: Boolean get() = ChartStylePrefs.style == ChartStyle.STRAP
+    private val classic: ClassicRamp get() = when {
+        isStrap -> StrapRamp
+        isLight -> ClassicLight
+        else -> ClassicDark
+    }
 
     // Surfaces.
     val surfaceBase get() = active.surfaceBase
@@ -84,17 +94,17 @@ object Palette {
     // change is live. Twin of macOS StrandPalette.accent* branching on AccentColor.
     val accent get() = when (AccentPrefs.color) {
         AccentColor.MINT -> active.accent
-        AccentColor.WHOOP_BLUE -> if (isLight) Color(0xFF234F9E) else Color(0xFF60A0E0)
+        AccentColor.WHOOP_BLUE -> if (isStrap) active.accent else if (isLight) Color(0xFF234F9E) else Color(0xFF60A0E0)
         AccentColor.CUSTOM -> AccentColor.parseHex(AccentPrefs.customHex, active.accent)
     }
     val accentHover get() = when (AccentPrefs.color) {
         AccentColor.MINT -> active.accentHover
-        AccentColor.WHOOP_BLUE -> if (isLight) Color(0xFF3A6FC0) else Color(0xFF8FBEEC)
+        AccentColor.WHOOP_BLUE -> if (isStrap) active.accentHover else if (isLight) Color(0xFF3A6FC0) else Color(0xFF8FBEEC)
         AccentColor.CUSTOM -> AccentColor.lighten(AccentPrefs.customHex)
     }
     val accentMuted get() = when (AccentPrefs.color) {
         AccentColor.MINT -> active.accentMuted
-        AccentColor.WHOOP_BLUE -> (if (isLight) Color(0xFF234F9E) else Color(0xFF60A0E0)).copy(alpha = 0.18f)
+        AccentColor.WHOOP_BLUE -> (if (isStrap) active.accent else if (isLight) Color(0xFF234F9E) else Color(0xFF60A0E0)).copy(alpha = 0.18f)
         AccentColor.CUSTOM -> AccentColor.parseHex(AccentPrefs.customHex, active.accent).copy(alpha = 0.18f)
     }
     val focusRing get() = if (AccentPrefs.color == AccentColor.MINT) active.focusRing else accent
@@ -470,28 +480,44 @@ object NoopType {
     private val sans = FontFamily.SansSerif
     private val monoFamily = FontFamily.Monospace
 
+    // Fork: the condensed face of the Strap look (Barlow Semi Condensed, SIL OFL 1.1, bundled under
+    // res/font). Only numerals, display figures, titles and the upper-case overlines switch to it;
+    // running text stays in the platform sans so long copy remains easy to read.
+    private val strapFamily = FontFamily(
+        Font(R.font.barlow_semi_condensed_medium, FontWeight.Medium),
+        Font(R.font.barlow_semi_condensed_semibold, FontWeight.SemiBold),
+        Font(R.font.barlow_semi_condensed_bold, FontWeight.Bold),
+    )
+
+    /** The family for figures, titles and overlines: condensed while the Strap look is on. Reads the
+     *  chart-style snapshot state, so a style flip re-renders every text that uses it. */
+    val numeralFamily: FontFamily get() = if (Palette.isStrap) strapFamily else sans
+
     /** Display 64–80 / Bold — the recovery ring number. Tight tracking (≈ -0.04em),
      *  tabular figures so a changing value never reflows. Mirrors StrandFont.display. */
     fun display(size: Float = 72f) = TextStyle(
-        fontFamily = sans, fontWeight = FontWeight.Bold, fontSize = size.sp,
+        fontFamily = numeralFamily, fontWeight = FontWeight.Bold, fontSize = size.sp,
         letterSpacing = displayTracking(size).sp, fontFeatureSettings = "tnum",
     )
 
     /** The tight tracking for big display numbers (≈ -0.04em). Already applied inside
-     *  display(); exposed to mirror StrandFont.displayTracking. */
-    fun displayTracking(size: Float = 72f): Float = -size * 0.04f
+     *  display(); exposed to mirror StrandFont.displayTracking. The condensed Strap face is already
+     *  narrow, so it only gets a hint of tightening. */
+    fun displayTracking(size: Float = 72f): Float = if (Palette.isStrap) -size * 0.01f else -size * 0.04f
 
-    val title1 = TextStyle(fontFamily = sans, fontWeight = FontWeight.Bold, fontSize = 28.sp)
-    val title2 = TextStyle(fontFamily = sans, fontWeight = FontWeight.SemiBold, fontSize = 22.sp)
+    val title1: TextStyle get() = TextStyle(fontFamily = numeralFamily, fontWeight = FontWeight.Bold, fontSize = 28.sp)
+    val title2: TextStyle get() = TextStyle(fontFamily = numeralFamily, fontWeight = FontWeight.SemiBold, fontSize = 22.sp)
     val headline = TextStyle(fontFamily = sans, fontWeight = FontWeight.SemiBold, fontSize = 17.sp)
     val body = TextStyle(fontFamily = sans, fontWeight = FontWeight.Normal, fontSize = 15.sp)
     val subhead = TextStyle(fontFamily = sans, fontWeight = FontWeight.Normal, fontSize = 13.sp)
     val caption = TextStyle(fontFamily = sans, fontWeight = FontWeight.Normal, fontSize = 12.sp)
     val footnote = TextStyle(fontFamily = sans, fontWeight = FontWeight.Normal, fontSize = 11.sp)
 
-    /** Overline 11 / Bold, +1.4 tracking, ALL-CAPS at use site. */
-    val overline = TextStyle(
-        fontFamily = sans, fontWeight = FontWeight.Bold, fontSize = 11.sp,
+    /** Overline 11 / Bold, +1.4 tracking, ALL-CAPS at use site. The condensed Strap face runs a
+     *  point larger so the narrower glyphs keep the same optical size. */
+    val overline: TextStyle get() = TextStyle(
+        fontFamily = numeralFamily, fontWeight = FontWeight.Bold,
+        fontSize = if (Palette.isStrap) 12.sp else 11.sp,
         letterSpacing = 1.4.sp,
     )
 
@@ -501,20 +527,22 @@ object NoopType {
     /** A numeric style at an arbitrary size — the house sans with TABULAR figures
      *  ('tnum') so live values don't reflow. Mirrors StrandFont.number. */
     fun number(size: Float, weight: FontWeight = FontWeight.SemiBold) = TextStyle(
-        fontFamily = sans, fontWeight = weight, fontSize = size.sp, fontFeatureSettings = "tnum",
+        fontFamily = numeralFamily, fontWeight = weight, fontSize = size.sp, fontFeatureSettings = "tnum",
     )
 
     fun mono(size: Float, weight: FontWeight = FontWeight.Normal) = TextStyle(
         fontFamily = monoFamily, fontWeight = weight, fontSize = size.sp,
     )
 
-    val bodyNumber = TextStyle(fontFamily = sans, fontWeight = FontWeight.Medium, fontSize = 15.sp, fontFeatureSettings = "tnum")
-    val captionNumber = TextStyle(fontFamily = sans, fontWeight = FontWeight.Medium, fontSize = 12.sp, fontFeatureSettings = "tnum")
-    val metricInline = number(15f)
-    val chartValue = number(18f)
-    val chartValueLarge = number(22f)
-    val tileValue = number(24f)
-    val tileValueLarge = number(26f)
+    // Getters rather than stored values (fork): they follow [numeralFamily], which changes with the
+    // Strap look at runtime. Same names and types, so every call site is unchanged.
+    val bodyNumber: TextStyle get() = TextStyle(fontFamily = numeralFamily, fontWeight = FontWeight.Medium, fontSize = 15.sp, fontFeatureSettings = "tnum")
+    val captionNumber: TextStyle get() = TextStyle(fontFamily = numeralFamily, fontWeight = FontWeight.Medium, fontSize = 12.sp, fontFeatureSettings = "tnum")
+    val metricInline: TextStyle get() = number(15f)
+    val chartValue: TextStyle get() = number(18f)
+    val chartValueLarge: TextStyle get() = number(22f)
+    val tileValue: TextStyle get() = number(24f)
+    val tileValueLarge: TextStyle get() = number(26f)
 
     const val overlineTracking = 1.4f
 }
@@ -577,12 +605,19 @@ private val NoopShapes = Shapes(
  */
 @Composable
 fun NoopTheme(content: @Composable () -> Unit) {
-    val dark = when (AppearancePrefs.mode) {
+    // Fork: the Strap look is dark-only, whatever the Light/Dark/System choice says.
+    val strap = ChartStylePrefs.style == ChartStyle.STRAP
+    val systemDark = isSystemInDarkTheme()
+    val dark = strap || when (AppearancePrefs.mode) {
         AppearanceMode.LIGHT -> false
         AppearanceMode.DARK -> true
-        AppearanceMode.SYSTEM -> isSystemInDarkTheme()
+        AppearanceMode.SYSTEM -> systemDark
     }
-    val tokens = if (dark) DarkTokens else LightTokens
+    val tokens = when {
+        strap -> StrapTokens
+        dark -> DarkTokens
+        else -> LightTokens
+    }
     if (Palette.active !== tokens) Palette.active = tokens
 
     // Status-/nav-bar icon appearance: light icons on the dark theme, dark icons on the warm-paper

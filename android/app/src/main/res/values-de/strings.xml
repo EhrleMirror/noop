@@ -2,9 +2,9 @@
 <resources>
     <!-- German (de). App name stays untranslated (brand). Nav terms mirror the iOS German pass where
          one exists, so the two platforms read the same. -->
-    <string name="widget_description">Ruhe, Ladung und Anstrengung von heute, mit Live-Herzfrequenz und Band-Akku auf einen Blick.</string>
+    <string name="widget_description">Schlaf, Erholung und Belastung von heute, mit Live-Herzfrequenz und Band-Akku auf einen Blick.</string>
     <string name="widget_compact_name">NOOP Kompakt</string>
-    <string name="widget_compact_description">Kompaktes Widget für Ruhe, Ladung und Anstrengung, mit Live-Herzfrequenz und Band-Akku.</string>
+    <string name="widget_compact_description">Kompaktes Widget für Schlaf, Erholung und Belastung, mit Live-Herzfrequenz und Band-Akku.</string>
     <string name="widget_error">Das NOOP-Widget konnte nicht gezeichnet werden. Es erholt sich beim nächsten Update.</string>
 
     <string name="nav_today">Heute</string>
@@ -113,8 +113,8 @@
         <item quantity="one">%1$d Tag</item>
         <item quantity="other">%1$d Tage</item>
     </plurals>
-    <string name="trends_charge">Ladung</string>
-    <string name="trends_effort">Anstrengung</string>
+    <string name="trends_charge">Erholung</string>
+    <string name="trends_effort">Belastung</string>
     <string name="trends_rest">Ruhe</string>
     <string name="trends_hrv_full">Herzfrequenzvariabilität</string>
     <string name="trends_resting_hr_full">Ruheherzfrequenz</string>
@@ -126,7 +126,7 @@
     <string name="trends_next_week">Nächste Woche</string>
     <string name="trends_daily_signals">Tägliche Signale</string>
     <string name="trends_week_in_review">Woche im Rückblick</string>
-    <string name="trends_charge_effort_rest">Ladung · Anstrengung · Ruhe</string>
+    <string name="trends_charge_effort_rest">Erholung · Belastung · Schlaf</string>
     <string name="trends_calendar">Kalender</string>
     <string name="trends_avg">Ø</string>
     <string name="trends_peak">Spitze</string>
@@ -135,7 +135,7 @@
     <string name="trends_mean">Mittelwert</string>
     <string name="trends_min">Min</string>
     <string name="trends_max">Max</string>
-    <string name="trends_calendar_footnote">Jeder Balken ist der Ladungswert eines Tages, von niedrig bis hoch. Das 53-Wochen-Kalendergitter ist Teil der Desktop-App.</string>
+    <string name="trends_calendar_footnote">Jeder Balken ist der Erholungswert eines Tages, von niedrig bis hoch. Das 53-Wochen-Kalendergitter ist Teil der Desktop-App.</string>
     <string name="trends_not_enough_data">Nicht genug Daten für diesen Zeitraum.</string>
     <string name="trends_empty_title">Trends brauchen Verlauf zum Zeichnen</string>
     <string name="trends_empty_body">Trends brauchen Verlauf zum Zeichnen. Importiere deinen WHOOP-Export in den Datenquellen, um Wochen, Monate und Jahre sofort zu sehen.</string>
@@ -393,7 +393,7 @@
     <string name="l10n_coupled_screen_calibrating_calibrationnights_of_baselines_minnightsseed_nights_1a7e8f8e">Kalibrierung, %1$s von %2$s Nächten</string>
     <string name="l10n_coupled_screen_hoursminutes_asleepmin_slept_732a5b21">%1$s im Schlaf</string>
     <string name="l10n_coupled_screen_hoursminutes_needmin_needed_7fc1eb15">%1$s benötigt</string>
-    <string name="l10n_coupled_screen_no_effort_yet_f622f99d">Noch keine Anstrengung</string>
+    <string name="l10n_coupled_screen_no_effort_yet_f622f99d">Noch keine Belastung</string>
     <string name="l10n_coupled_screen_no_sleep_tracked_last_night_cd0dd79e">Letzte Nacht kein Schlaf erfasst</string>
     <string name="l10n_coupled_screen_recovery_b668d988">ERHOLUNG</string>
     <string name="l10n_coupled_screen_sleep_performance_4611539f">SCHLAFLEISTUNG</string>
@@ -544,7 +544,7 @@
     <string name="l10n_hrv_snapshot_screen_not_enough_clean_beats_sit_still_0893e6c2">Nicht genug saubere Beats - sitz still und versuche es erneut. %1$s von %2$s beats survived filtering (need %3$s).</string>
     <string name="l10n_hrv_snapshot_screen_rmssd_e240fd3c">RMSSD</string>
     <string name="l10n_hrv_snapshot_screen_sdnn_9ab9ee2a">SDNN</string>
-    <string name="l10n_hydration_screen_a_simple_goal_that_adjusts_to_723dc08a">Ein einfaches Ziel, das sich deiner Anstrengung anpasst. Allgemeine Wellness-Orientierung, kein medizinischer Rat.</string>
+    <string name="l10n_hydration_screen_a_simple_goal_that_adjusts_to_723dc08a">Ein einfaches Ziel, das sich deiner Belastung anpasst. Allgemeine Wellness-Orientierung, kein medizinischer Rat.</string>
     <string name="l10n_hydration_screen_bottle_3b8ac6c7">Flasche</string>
     <string name="l10n_hydration_screen_cancel_77dfd213">Abbrechen</string>
     <string name="l10n_hydration_screen_clear_today_1be870ea">Heute klar</string>
@@ -590,7 +590,7 @@
     <string name="l10n_insights_screen_not_enough_overlap_between_your_journal_0ebdd7a2">Nicht genug Überlappungen zwischen deinen Journal Antworten und %1$s to measure an effect yet. Keep logging. Effects need days both with and without each behaviour.</string>
     <string name="l10n_insights_screen_not_enough_overlapping_history_to_correlate_a552dbd4">Noch nicht genug überlappender Verlauf, um deine Metriken zu korrelieren.</string>
     <string name="l10n_insights_screen_pick_one_behaviour_you_log_one_bd34090e">Wähle ein Verhalten, das du protokollierst, ein Ergebnis und ein kurzes Fenster. NOOP compares the days you log the behaviour against your behaviour-free days before the start.</string>
-    <string name="l10n_insights_screen_ranked_lag_aware_which_of_your_e0e91b39">Eingestuft, mit Zeitversatz: welche deiner Gewohnheiten deine Ladung wirklich bewegen, plus deine persönliche Alkohol-/Koffein-Dosis-Wirkung.</string>
+    <string name="l10n_insights_screen_ranked_lag_aware_which_of_your_e0e91b39">Eingestuft, mit Zeitversatz: welche deiner Gewohnheiten deine Erholung wirklich bewegen, plus deine persönliche Alkohol-/Koffein-Dosis-Wirkung.</string>
     <string name="l10n_insights_screen_rest_baseline_b3ac52a5">Ruhe-Basislinie</string>
     <string name="l10n_insights_screen_run_a_clean_personal_test_4da69781">Führe einen sauberen persönlichen Test durch</string>
     <string name="l10n_insights_screen_sessions_e11e37a9">Sitzungen</string>
@@ -606,14 +606,14 @@
     <string name="l10n_intelligence_screen_0_unitformatter_effortscalemax_effortscale_scale_b5c43f56">0 - %1$s-Skala</string>
     <string name="l10n_intelligence_screen_band_ec8a8993">± %1$s</string>
     <string name="l10n_intelligence_screen_by_day_2e5d14ca">Nach Tag</string>
-    <string name="l10n_intelligence_screen_charge_weighs_your_heart_rate_variability_026745e6">Ladung wiegt deine Herzfrequenzvariabilität gegen deine persönliche Baseline (~55%%), resting heart rate (~20%%), rest quality (~15%%), respiration (~5%%) and skin-temperature deviation (~5%%). Effort is a 0 - %1$s cardiovascular load from time spent in each heart-rate zone. Rest is staged from movement and heart rate. The full on-device recompute from the strap\'s raw streams is a later port; the scores below are read from each day\'s cached metrics.</string>
-    <string name="l10n_intelligence_screen_effort_8c974bc6">Anstrengung</string>
+    <string name="l10n_intelligence_screen_charge_weighs_your_heart_rate_variability_026745e6">Erholung wiegt deine Herzfrequenzvariabilität gegen deine persönliche Baseline (~55%%), resting heart rate (~20%%), rest quality (~15%%), respiration (~5%%) and skin-temperature deviation (~5%%). Effort is a 0 - %1$s cardiovascular load from time spent in each heart-rate zone. Rest is staged from movement and heart rate. The full on-device recompute from the strap\'s raw streams is a later port; the scores below are read from each day\'s cached metrics.</string>
+    <string name="l10n_intelligence_screen_effort_8c974bc6">Belastung</string>
     <string name="l10n_intelligence_screen_estimate_from_today_s_effort_your_667d7560">Schätzung aus dem heutigen Aufwand, deinem typischen Schlaf und deiner %1$s-Nacht recovery baseline - not a measurement. Your real Charge is scored from tomorrow\'s HRV when you wake.</string>
     <string name="l10n_intelligence_screen_how_this_works_b895a8c3">Wie das funktioniert</string>
     <string name="l10n_intelligence_screen_intelligence_c698f940">Intelligenz</string>
     <string name="l10n_intelligence_screen_no_scored_days_in_this_window_03f1165b">Keine bewerteten Tage in diesem Fenster. Erweitere den Zeitraum oder importiere mehr Verlauf.</string>
-    <string name="l10n_intelligence_screen_no_scored_days_yet_sync_your_cdd47684">Noch keine erzielten Tage. Synchronisiere deinen Riemen, um rohe Streams zu sammeln. Anstrengung und Ruhe sind scored once a day\'s data is in. Charge needs about four nights of sleep to learn your baseline (you\'ll see \"Calibrating\" until then), and keeps sharpening over your first couple of weeks. On a WHOOP 5 or MG the strap banks little history, so that night count can climb slowly or sit at 0 of 4 until you have worn it across a few nights. That\'s its sync limit, not a fault. Import your WHOOP export to skip the wait.</string>
-    <string name="l10n_intelligence_screen_you_ll_likely_wake_around_charge_ed3abe2e">Du wirst wahrscheinlich um %1$s ± %2$s Ladung aufwachen, wenn du schläfst %3$s tonight.</string>
+    <string name="l10n_intelligence_screen_no_scored_days_yet_sync_your_cdd47684">Noch keine erzielten Tage. Synchronisiere deinen Riemen, um rohe Streams zu sammeln. Belastung und Ruhe sind scored once a day\'s data is in. Charge needs about four nights of sleep to learn your baseline (you\'ll see \"Calibrating\" until then), and keeps sharpening over your first couple of weeks. On a WHOOP 5 or MG the strap banks little history, so that night count can climb slowly or sit at 0 of 4 until you have worn it across a few nights. That\'s its sync limit, not a fault. Import your WHOOP export to skip the wait.</string>
+    <string name="l10n_intelligence_screen_you_ll_likely_wake_around_charge_ed3abe2e">Du wirst wahrscheinlich um %1$s ± %2$s Erholung aufwachen, wenn du schläfst %3$s tonight.</string>
     <string name="l10n_intervals_screen_bond_your_strap_on_the_live_d799cbc2">Verbinde deinen Strap im Live-Bildschirm, um die Übergänge freihändig zu spüren.</string>
     <string name="l10n_intervals_screen_interval_timer_1d703deb">Intervall-Timer</string>
     <string name="l10n_intervals_screen_pause_to_change_work_rest_or_f54f9cc5">Pause, um Arbeit, Ruhe oder Runden zu wechseln.</string>
@@ -649,7 +649,7 @@
     <string name="l10n_lab_book_screen_markername_signal_title_e9c07909">%1$s ↔ %2$s</string>
     <string name="l10n_lab_book_screen_n_readings_line_up_but_there_27bfb506">%1$s-Messwerte stimmen überein, aber es gibt nicht genug Variation, um eine Beziehung zu berechnen.</string>
     <string name="l10n_lab_book_screen_n_readings_used_strengthword_r_directionword_298baf9e">Verwendete %1$s-Messwerte · %2$s %3$s-Assoziation. Dies sind deine eigenen Daten sitting side by side. It\'s not a medical finding, and it shows association, not cause.</string>
-    <string name="l10n_lab_book_screen_pick_a_wearable_signal_resting_hr_8d8b01a2">Wähle ein tragbares Signal (Ruhe HR, HRV, Schlaf, Ladung, Gewicht ...), um es gegen dieses auszurichten marker. NOOP averages the signal over the %1$s before each reading.</string>
+    <string name="l10n_lab_book_screen_pick_a_wearable_signal_resting_hr_8d8b01a2">Wähle ein tragbares Signal (Ruhe HR, HRV, Schlaf, Erholung, Gewicht ...), um es gegen dieses auszurichten marker. NOOP averages the signal over the %1$s before each reading.</string>
     <string name="l10n_lab_book_screen_r_signedr_r_fb21be90">r = %1$s</string>
     <string name="l10n_lab_book_screen_read_the_full_lab_book_note_3a250750">Den vollständigen Laborbuch-Hinweis lesen</string>
     <string name="l10n_lab_book_screen_read_the_full_note_3fd0e4d1">Den vollständigen Hinweis lesen</string>
@@ -683,7 +683,7 @@
     <string name="l10n_live_workout_screen_avg_cdc93143">Ø</string>
     <string name="l10n_live_workout_screen_cadence_68af11f0">Trittfrequenz</string>
     <string name="l10n_live_workout_screen_cancel_77dfd213">Abbrechen</string>
-    <string name="l10n_live_workout_screen_effort_8c974bc6">Anstrengung</string>
+    <string name="l10n_live_workout_screen_effort_8c974bc6">Belastung</string>
     <string name="l10n_live_workout_screen_of_c5e92da0">von %1$d</string>
     <string name="l10n_live_workout_screen_end_this_workout_4869c76a">Workout beenden?</string>
     <string name="l10n_live_workout_screen_end_workout_3e8d6238">Workout beenden</string>
@@ -736,7 +736,7 @@
     <string name="l10n_notifications_settings_screen_only_buzz_when_worn_6211cee3">Nur vibrieren, wenn getragen</string>
     <string name="l10n_notifications_settings_screen_open_notification_access_658fd30f">Offener Benachrichtigungszugang</string>
     <string name="l10n_notifications_settings_screen_open_notification_access_settings_93fcd1bf">Einstellungen für Benachrichtigungszugriff öffnen</string>
-    <string name="l10n_notifications_settings_screen_optimal_strain_reached_2862ec2b">Optimale Anstrengung erreicht</string>
+    <string name="l10n_notifications_settings_screen_optimal_strain_reached_2862ec2b">Optimale Belastung erreicht</string>
     <string name="l10n_notifications_settings_screen_phone_calls_b79420d9">Telefongespräche</string>
     <string name="l10n_notifications_settings_screen_phone_permission_was_denied_so_phone_db0ebdd8">Die telefonerlaubnis wurde verweigert, so dass das telefongespräch ausgeschaltet ist.</string>
     <string name="l10n_notifications_settings_screen_post_workout_summary_13e488f5">Zusammenfassung nach dem Training</string>
@@ -801,7 +801,7 @@
     <string name="l10n_rhythm_screen_rhythm_c715bb28">Rhythmus</string>
     <string name="l10n_rhythm_screen_short_axis_66a0b7bf">Kurzachse</string>
     <string name="l10n_rhythm_screen_the_numbers_7b3cbf64">Die Zahlen</string>
-    <string name="l10n_scoring_guide_screen_charge_effort_rest_f396a530">Ladung · Anstrengung · Ruhe</string>
+    <string name="l10n_scoring_guide_screen_charge_effort_rest_f396a530">Erholung · Belastung · Schlaf</string>
     <string name="l10n_scoring_guide_screen_close_bbfa773e">Schließen</string>
     <string name="l10n_scoring_guide_screen_every_score_carries_a_small_honesty_e5b722eb">Jede Partitur trägt ein kleines Ehrlichkeitslabel. Kalibrieren bedeutet, dass NOOP noch ist</string>
     <string name="l10n_scoring_guide_screen_got_it_5b8027fa">Verstanden</string>
@@ -961,8 +961,8 @@
     <string name="l10n_test_centre_screen_hrv_readiness_experimental_word_a471930e">HRV-Reife (experimentell): %1$s</string>
     <string name="l10n_test_centre_screen_hrv_readiness_plews_altini_bce6578f">HRV-Bereitschaft (Plews/Altini)</string>
     <string name="l10n_test_centre_screen_recalibrate_aaa989ea">Neu kalibrieren</string>
-    <string name="l10n_test_centre_screen_recalibrate_charge_baseline_52a05a26">Ladungs-Basislinie neu kalibrieren</string>
-    <string name="l10n_test_centre_screen_recalibrate_your_charge_baseline_018e3846">Deine Ladungs-Basislinie neu kalibrieren?</string>
+    <string name="l10n_test_centre_screen_recalibrate_charge_baseline_52a05a26">Erholungs-Basislinie neu kalibrieren</string>
+    <string name="l10n_test_centre_screen_recalibrate_your_charge_baseline_018e3846">Deine Erholungs-Basislinie neu kalibrieren?</string>
     <string name="l10n_test_centre_screen_report_a_bug_with_my_log_5101ee49">Fehler mit meinem Log melden</string>
     <string name="l10n_test_centre_screen_report_ee45c303">Bericht</string>
     <string name="l10n_test_centre_screen_review_before_sharing_d7050383">Vor dem Teilen prüfen</string>
@@ -971,7 +971,7 @@
     <string name="l10n_test_centre_screen_test_centre_37b36828">Testzentrum</string>
     <string name="l10n_test_centre_screen_test_modes_e21f1d3c">Prüfphasen</string>
     <string name="l10n_test_centre_screen_this_is_exactly_what_your_report_77278bdd">Genau das wird dein Bericht enthalten. Nichts verlässt dieses Telefon, bis du auf Teilen tippst.</string>
-    <string name="l10n_test_centre_screen_this_restarts_the_roughly_4_night_33cce377">Das startet den etwa 4-nächtigen Aufbau für Ladung und deine HRV-Basislinie neu. Dein Verlauf bleibt.</string>
+    <string name="l10n_test_centre_screen_this_restarts_the_roughly_4_night_33cce377">Das startet den etwa 4-nächtigen Aufbau für Erholung und deine HRV-Basislinie neu. Dein Verlauf bleibt.</string>
     <string name="l10n_time_of_day_background_atmospherephase_5ce21300">AtmosphärePhase</string>
     <string name="l10n_today_screen_arrange_today_6b699147">Heute vereinbaren</string>
     <string name="l10n_today_screen_calibrating_37c2c9bd">Kalibrierung</string>
@@ -984,8 +984,8 @@
     <string name="l10n_today_screen_done_e9b450d1">Fertig</string>
     <string name="l10n_today_screen_driver_label_driver_valuetext_driver_baselinetext_067bc963">%1$s, %2$s, %3$s,</string>
     <string name="l10n_today_screen_hold_a_section_and_drag_it_1d6e2441">Halte einen Abschnitt und ziehe ihn zum Nachbestellen - hier oder direkt auf den Today-Karten.</string>
-    <string name="l10n_today_screen_how_charge_is_calculated_142d5e8e">So wird Ladung berechnet</string>
-    <string name="l10n_today_screen_how_charge_is_calculated_the_method_3ea7548b">So wird Ladung berechnet. Die Methode hinter dem Wert.</string>
+    <string name="l10n_today_screen_how_charge_is_calculated_142d5e8e">So wird Erholung berechnet</string>
+    <string name="l10n_today_screen_how_charge_is_calculated_the_method_3ea7548b">So wird Erholung berechnet. Die Methode hinter dem Wert.</string>
     <string name="l10n_today_screen_label_readout_3f166607">%1$s %2$s</string>
     <string name="l10n_today_screen_label_value_b781d590">%1$s %2$s</string>
     <string name="l10n_today_screen_move_item_card_title_down_abd8549a">%1$s nach unten verschieben</string>
@@ -999,14 +999,14 @@
     <string name="l10n_today_screen_readiness_word_749b3330">Bereitschaft: %1$s</string>
     <string name="l10n_today_screen_reset_44c57abd">Zurücksetzen</string>
     <string name="l10n_today_screen_return_to_workout_30dc5509">Zurück zum Workout</string>
-    <string name="l10n_today_screen_see_how_charge_effort_and_rest_80243197">Sieh, wie Ladung, Anstrengung und Ruhe berechnet werden und wie sie sich von WHOOP unterscheiden.</string>
+    <string name="l10n_today_screen_see_how_charge_effort_and_rest_80243197">Sieh, wie Erholung, Belastung und Schlaf berechnet werden und wie sie sich von WHOOP unterscheiden.</string>
     <string name="l10n_today_screen_see_how_it_works_f7b38f07">Sieh, wie es funktioniert</string>
     <string name="l10n_today_screen_show_item_card_title_7844540d">%1$s anzeigen</string>
     <string name="l10n_today_screen_signed_pts_5ea85678">%1$s pts</string>
     <string name="l10n_today_screen_state_title_state_detail_f5380609">%1$s. %2$s</string>
     <string name="l10n_today_screen_the_method_behind_the_score_not_5bc68508">Die Methode hinter dem Wert, nicht die heutigen Zahlen.</string>
     <string name="l10n_today_screen_title_beta_detail_6b39ae21">%1$s, Beta. %2$s</string>
-    <string name="l10n_today_screen_what_shaped_your_charge_9f53a2b3">Was deine Ladung geprägt hat</string>
+    <string name="l10n_today_screen_what_shaped_your_charge_9f53a2b3">Was deine Erholung geprägt hat</string>
     <string name="l10n_today_screen_wordmark_dx_d428284f">wordmark-dx</string>
     <string name="l10n_today_screen_wordmark_rot_21de874b">Wortmarkenrot</string>
     <string name="l10n_today_screen_wordmark_sx_68fa7b60">wordmark-sx</string>
@@ -1057,7 +1057,7 @@
     <string name="l10n_workouts_screen_all_sessions_03bc4eb4">Alle Sitzungen</string>
     <string name="l10n_workouts_screen_all_sources_c0e8e58c">Alle Quellen</string>
     <string name="l10n_workouts_screen_all_sports_dfad56f1">Alle Sportarten</string>
-    <string name="l10n_workouts_screen_avg_hr_is_shown_as_typed_2c8db249">Die Ø-HF wird wie eingegeben angezeigt. HF-Graph, Zonen und Anstrengung bleiben aus der aufgezeichneten Sitzung.</string>
+    <string name="l10n_workouts_screen_avg_hr_is_shown_as_typed_2c8db249">Die Ø-HF wird wie eingegeben angezeigt. HF-Graph, Zonen und Belastung bleiben aus der aufgezeichneten Sitzung.</string>
     <string name="l10n_workouts_screen_cancel_77dfd213">Abbrechen</string>
     <string name="l10n_workouts_screen_clear_719ea396">Löschen</string>
     <string name="l10n_workouts_screen_clear_filters_41222671">Klarfilter</string>
@@ -1087,10 +1087,10 @@
     <string name="l10n_workouts_screen_show_more_more_sessions_25bce755">%1$s weitere Sessions anzeigen</string>
     <string name="l10n_workouts_screen_started_faa9e7e7">Beginn</string>
     <string name="l10n_workouts_screen_ended_90303d8d">Ende</string>
-    <string name="l10n_workouts_screen_the_average_above_was_edited_the_0a7881f0">Der Durchschnitt oben wurde bearbeitet. Graph, Zonen und Anstrengung bleiben aus der aufgezeichneten Sitzung.</string>
+    <string name="l10n_workouts_screen_the_average_above_was_edited_the_0a7881f0">Der Durchschnitt oben wurde bearbeitet. Graph, Zonen und Belastung bleiben aus der aufgezeichneten Sitzung.</string>
     <string name="l10n_workouts_screen_these_sessions_have_no_sport_label_53993414">Diese Sessions haben noch kein Sportlabel. Wähle eine für die fusionierte Sitzung.</string>
-    <string name="l10n_workouts_screen_this_session_s_contribution_to_the_fe40ab3d">Der Beitrag dieser Sitzung zur Tages-Anstrengung, wie während des Workouts erfasst.</string>
-    <string name="l10n_workouts_screen_this_session_s_effort_onedecimal_shown_74eed8be">Diese Sitzung Anstrengung, %1$s auf der %2$s scale.</string>
+    <string name="l10n_workouts_screen_this_session_s_contribution_to_the_fe40ab3d">Der Beitrag dieser Sitzung zur Tages-Belastung, wie während des Workouts erfasst.</string>
+    <string name="l10n_workouts_screen_this_session_s_effort_onedecimal_shown_74eed8be">Diese Sitzung Belastung, %1$s auf der %2$s scale.</string>
     <string name="l10n_workouts_screen_total_calories_0a49da20">Kalorien gesamt</string>
     <string name="l10n_workouts_screen_total_distance_e8260e11">Distanz gesamt</string>
     <string name="l10n_workouts_screen_total_time_8ce2e6c3">Zeit gesamt</string>
@@ -1114,7 +1114,7 @@
     <string name="l10n_app_changelog_a_big_bug_fix_sweep_with_65335764">Ein großer Bug-Fix-Sweep, mit dem Testzentrum, um es zu unterstützen</string>
     <string name="l10n_app_changelog_a_big_one_smarter_sleep_naps_8d7745c6">Ein großer: intelligenter Schlaf, Nickerchen, mehr Geräte und eine Menge Fixes</string>
     <string name="l10n_app_changelog_a_bolder_today_screen_4efe8215">Ein mutiger Heute Bildschirm</string>
-    <string name="l10n_app_changelog_a_calmer_today_your_charge_explained_e4174303">Ein ruhiger Heute, deine Ladung erklärt, und neue HRV Wissenschaft unter der Haube</string>
+    <string name="l10n_app_changelog_a_calmer_today_your_charge_explained_e4174303">Ein ruhiger Heute, deine Erholung erklärt, und neue HRV Wissenschaft unter der Haube</string>
     <string name="l10n_app_changelog_a_cleaner_home_refreshed_design_a_8c91c06b">Ein saubereres Zuhause - erfrischtes Design, ein neuer Posteingang, dein Foto</string>
     <string name="l10n_app_changelog_a_fresh_look_new_gold_on_6f379935">Ein frischer Look - neue Gold-on-Navy-Ikone</string>
     <string name="l10n_app_changelog_a_quick_fix_9cd2b7de">Eine schnelle Lösung</string>
@@ -1156,10 +1156,10 @@
     <string name="l10n_app_changelog_browse_past_nights_smarter_coach_workout_9fc9bfd2">Browse vergangene Nächte, smarter Coach, Trainingszeiten, Batterie &amp; mehr</string>
     <string name="l10n_app_changelog_browse_the_last_few_days_interactive_a13e7b2a">Durchsuche die letzten Tage, interaktive Charts und einen Vital Signs-Bildschirm (Android)</string>
     <string name="l10n_app_changelog_bug_fix_sweep_steps_sleep_export_50c60c51">Bug-Fix Sweep: Schritte, Schlaf-Export und eine batteriesparende Reconnect-Fix</string>
-    <string name="l10n_app_changelog_bug_fixes_effort_the_widget_s_6b807b50">Bugfixes: Anstrengung, der Tag des Widgets und Oura Reconnect</string>
+    <string name="l10n_app_changelog_bug_fixes_effort_the_widget_s_6b807b50">Bugfixes: Belastung, der Tag des Widgets und Oura Reconnect</string>
     <string name="l10n_app_changelog_buzz_whoop_4_in_the_smart_4d17676a">Buzz WHOOP 4 im Smart Alarm</string>
     <string name="l10n_app_changelog_charge_effort_rest_noop_s_own_8c323656">Charge, Effort &amp; Rest - NOOP eigene Ergebnisse, von 100</string>
-    <string name="l10n_app_changelog_charge_shows_calibrating_instead_of_no_51a000e9">Ladung zeigt "Kalibrieren" anstelle von "Keine Daten" für neue Gurte</string>
+    <string name="l10n_app_changelog_charge_shows_calibrating_instead_of_no_51a000e9">Erholung zeigt "Kalibrieren" anstelle von "Keine Daten" für neue Gurte</string>
     <string name="l10n_app_changelog_check_for_updates_736b9062">Nach Updates suchen</string>
     <string name="l10n_app_changelog_classic_chart_colours_a_throwback_toggle_e8150db5">Klassische Chartfarben - ein Throwback-Toggle</string>
     <string name="l10n_app_changelog_cleaner_live_status_better_sync_diagnostics_00ad8d26">Cleaner Live Status + bessere Sync-Diagnose</string>
@@ -1185,7 +1185,7 @@
     <string name="l10n_app_changelog_design_polish_cross_platform_parity_caa8e2c4">Design Polnisch &amp; Cross-Plattform Parität</string>
     <string name="l10n_app_changelog_dynamic_island_toggle_now_actually_turns_df387ee6">Dynamic Island Toggle schaltet es jetzt aus</string>
     <string name="l10n_app_changelog_editable_naps_a_richer_trends_report_471c1a69">Editable Nickerchen, ein reicherer Trends-Bericht und besserer Debug-Export</string>
-    <string name="l10n_app_changelog_effort_explains_a_calm_day_zero_08bd9936">Anstrengung erklärt eine Ruhe-Tag Null - und punktet auf der 5,0/MG</string>
+    <string name="l10n_app_changelog_effort_explains_a_calm_day_zero_08bd9936">Belastung erklärt eine Ruhe-Tag Null - und punktet auf der 5,0/MG</string>
     <string name="l10n_app_changelog_effort_scale_fix_for_imported_data_aad0344d">Fix der Aufwandsskala für importierte Daten</string>
     <string name="l10n_app_changelog_estimated_steps_for_your_whoop_4_e961cade">Geschätzte Schritte für deinen WHOOP 4.0</string>
     <string name="l10n_app_changelog_everything_a_whole_new_look_hydration_0f648fc3">Alles: ein ganz neues Aussehen, Flüssigkeitszufuhr, automatische Workout-Erkennung und intelligenter Schlaf</string>
@@ -1268,7 +1268,7 @@
     <string name="l10n_app_changelog_polish_matched_to_the_iphone_mac_cc34126b">Polnisch - abgestimmt auf das iPhone &amp; Mac Design</string>
     <string name="l10n_app_changelog_german_french_spanish_pull_to_sync_1109bda2">Deutsch, Französisch und Spanisch, Pull-to-Sync auf Today und viele Verbesserungen</string>
     <string name="l10n_app_changelog_hrv_accuracy_fix_oura_sleep_and_4ed31e39">HRV-Korrektur, Oura-Schlaf und -Bewegung, mehr 5/MG-Daten und ein stoppbarer Sync</string>
-    <string name="l10n_app_changelog_optimal_strain_alerts_faster_history_sync_6488a27a">Hinweise zur optimalen Anstrengung, schnellere Verlaufssynchronisierung und viele Genauigkeitskorrekturen</string>
+    <string name="l10n_app_changelog_optimal_strain_alerts_faster_history_sync_6488a27a">Hinweise zur optimalen Belastung, schnellere Verlaufssynchronisierung und viele Genauigkeitskorrekturen</string>
     <string name="l10n_app_changelog_power_saving_that_protects_your_strap_57a32503">Energieeinsparung, die deinen Riemen schützt, ein Gemini-powered Coach auf Android und reichere metrische Details</string>
     <string name="l10n_app_changelog_raw_spo_honest_units_and_a_55e83a59">Raw SpO2, ehrliche Einheiten und eine leichtere App</string>
     <string name="l10n_app_changelog_re_scan_actually_scans_on_android_22198c8c">Re-Scan tatsächlich scannt auf Android</string>
@@ -1291,7 +1291,7 @@
     <string name="l10n_app_changelog_shortcuts_on_mac_recovery_in_the_dbcef46a">Verknüpfungen auf Mac, Wiederherstellung in der Android-Benachrichtigung</string>
     <string name="l10n_app_changelog_skin_temperature_unblocked_on_mac_ios_9cb6276c">Hauttemperatur auf Mac / iOS freigegeben, plus Export Fixes</string>
     <string name="l10n_app_changelog_sleep_and_recovery_for_whoop_4_c8f44a56">Schlaf und Wiederherstellung für WHOOP 4.0-Bänder auf der Firmware, die wir nicht lesen konnten</string>
-    <string name="l10n_app_changelog_sleep_charge_and_workouts_cleaned_up_e21a5381">Schlaf, Ladung und Workouts, aufgeräumt</string>
+    <string name="l10n_app_changelog_sleep_charge_and_workouts_cleaned_up_e21a5381">Schlaf, Erholung und Workouts, aufgeräumt</string>
     <string name="l10n_app_changelog_sleep_debt_daytime_stress_a_recovery_a92853f3">Schlafschulden, Tagesstress, eine Erholungsprognose und tägliche Navigation</string>
     <string name="l10n_app_changelog_sleep_figures_hr_zones_charging_calibration_b209b698">Schlafzahlen, HR-Zonen, Laden &amp; Kalibrieren - ein großes, von der Community gesteuertes Update</string>
     <string name="l10n_app_changelog_sleep_fix_for_whoop_4_0_c7a1b13d">Sleep Fix für WHOOP 4.0 + genaue WHOOP 5/MG Schritte</string>
@@ -1323,7 +1323,7 @@
     <string name="l10n_app_changelog_sync_visibility_a_sharper_stress_timeline_37e1e6d6">Sync Sichtbarkeit + eine schärfere Stress Timeline</string>
     <string name="l10n_app_changelog_the_archived_sleep_recovery_now_reaches_cf4bb3ef">Die archivierte Schlafwiederherstellung erreicht jetzt auch Android</string>
     <string name="l10n_app_changelog_the_everything_update_5e08d257">Alles Update</string>
-    <string name="l10n_app_changelog_the_new_look_everywhere_plus_sleep_5793dddf">Der neue Look überall - plus Schlaf, Anstrengung &amp; Bluetooth Fixes</string>
+    <string name="l10n_app_changelog_the_new_look_everywhere_plus_sleep_5793dddf">Der neue Look überall - plus Schlaf, Belastung &amp; Bluetooth Fixes</string>
     <string name="l10n_app_changelog_the_new_today_screen_comes_to_69dfab3d">Der neue Today-Bildschirm kommt für Android</string>
     <string name="l10n_app_changelog_the_smoothness_release_faster_everywhere_plus_baf8a7fc">Die Glattheit Release: schneller überall, plus ein Sleep Memory Fix</string>
     <string name="l10n_app_changelog_the_test_centre_help_us_fix_af39aa17">Das Testzentrum: Hilf uns, dein spezifisches Problem zu beheben</string>
@@ -1411,7 +1411,7 @@
     <string name="l10n_health_screen_blood_o_9bf5ed9b">Blut-O₂</string>
     <string name="l10n_health_screen_blood_oxygen_a8ad9ff5">Blutsauerstoff</string>
     <string name="l10n_health_screen_drives_your_fitness_age_9d0d1219">Speist dein Fitnessalter</string>
-    <string name="l10n_health_screen_effort_8c974bc6">Anstrengung</string>
+    <string name="l10n_health_screen_effort_8c974bc6">Belastung</string>
     <string name="l10n_health_screen_fitness_age_12383b4a">Fitnessalter</string>
     <string name="l10n_health_screen_health_monitor_c4abc3fc">Gesundheitsmonitor</string>
     <string name="l10n_health_screen_heart_rate_variability_20f0069e">Herzfrequenzvariabilität</string>
@@ -1441,7 +1441,7 @@
     <string name="l10n_hrv_snapshot_screen_a_60_second_snapshot_of_your_35f03f7c">Ein 60-Sekunden-Schnappschuss deiner Beat-to-Beat-Intervalle (R-R) vom Band, gereinigt (range and ectopic-beat filtering) before computing RMSSD the same way your overnight HRV is computed.</string>
     <string name="l10n_hrv_snapshot_screen_close_hrv_reading_a29a99a1">HRV-Messung schließen</string>
     <string name="l10n_hrv_snapshot_screen_hrv_reading_a2cf71f3">HRV-Messung</string>
-    <string name="l10n_insights_screen_charge_d4e1aee4">Ladung</string>
+    <string name="l10n_insights_screen_charge_d4e1aee4">Erholung</string>
     <string name="l10n_insights_screen_insights_b4510362">Einblicke</string>
     <string name="l10n_insights_screen_insights_read_your_journal_and_outcomes_6ec8aaf9">Insights lesen dein Tagebuch und Ergebnisse</string>
     <string name="l10n_insights_screen_pre_filled_from_last_night_tap_ce81097c">Vorgefüllt von gestern Abend. Tippe, um zu bestätigen oder zu ändern.</string>
@@ -1463,7 +1463,7 @@
     <string name="l10n_live_screen_can_t_connect_your_strap_s_cf78be83">Kann nicht verbunden werden - die Paarung deines Bandes wurde zurückgesetzt</string>
     <string name="l10n_live_screen_charging_5f99fe21">Lädt</string>
     <string name="l10n_live_screen_distance_42320809">Distanz</string>
-    <string name="l10n_live_screen_effort_8c974bc6">Anstrengung</string>
+    <string name="l10n_live_screen_effort_8c974bc6">Belastung</string>
     <string name="l10n_live_screen_end_a2bb9d34">Ende</string>
     <string name="l10n_live_screen_end_workout_3e8d6238">Workout beenden</string>
     <string name="l10n_live_screen_history_synced_relativeago_at_0ece753a">Geschichte synchronisiert %1$s</string>
@@ -1509,8 +1509,8 @@
     <string name="l10n_settings_screen_cancel_77dfd213">Abbrechen</string>
     <string name="l10n_settings_screen_restore_3cbe6d6b">Wiederherstellen</string>
     <string name="l10n_settings_screen_card_transparency_c5c7b4f3">Kartentransparenz</string>
-    <string name="l10n_settings_screen_charge_d4e1aee4">Ladung</string>
-    <string name="l10n_settings_screen_charge_effort_and_rest_and_how_d2c423a4">Ladung, Anstrengung und Ruhe und wie sie sich von WHOOP unterscheiden</string>
+    <string name="l10n_settings_screen_charge_d4e1aee4">Erholung</string>
+    <string name="l10n_settings_screen_charge_effort_and_rest_and_how_d2c423a4">Erholung, Belastung und Schlaf und wie sie sich von WHOOP unterscheiden</string>
     <string name="l10n_settings_screen_chart_colours_525f4a37">Diagrammfarben</string>
     <string name="l10n_settings_screen_check_for_updates_736b9062">Nach Updates suchen</string>
     <string name="l10n_settings_screen_checking_820d6004">Wird geprüft…</string>
@@ -1525,7 +1525,7 @@
     <string name="l10n_settings_screen_diagnostics_3af2279f">Diagnose</string>
     <string name="l10n_settings_screen_disconnect_ed28e068">Trennen</string>
     <string name="l10n_settings_screen_download_a479c9c3">Laden</string>
-    <string name="l10n_settings_screen_effort_scale_81afa9ef">Anstrengungsskala</string>
+    <string name="l10n_settings_screen_effort_scale_81afa9ef">Belastungsskala</string>
     <string name="l10n_settings_screen_experimental_whoop_5_mg_41ef7041">Experimentell · WHOOP 5 / MG</string>
     <string name="l10n_settings_screen_export_0a116345">Exportieren…</string>
     <string name="l10n_settings_screen_export_csv_6bce63a3">CSV exportieren…</string>
@@ -1571,8 +1571,8 @@
     <string name="l10n_settings_screen_project_home_source_994627c1">Projekt-Zuhause &amp; Quellcode</string>
     <string name="l10n_settings_screen_questions_feedback_bugs_support_email_ed10662a">Fragen, Feedback, Bugs: %1$s</string>
     <string name="l10n_settings_screen_recalibrate_aaa989ea">Neu kalibrieren</string>
-    <string name="l10n_settings_screen_recalibrate_charge_baseline_52a05a26">Ladungs-Basislinie neu kalibrieren</string>
-    <string name="l10n_settings_screen_recalibrate_your_charge_baseline_018e3846">Deine Ladungs-Basislinie neu kalibrieren?</string>
+    <string name="l10n_settings_screen_recalibrate_charge_baseline_52a05a26">Erholungs-Basislinie neu kalibrieren</string>
+    <string name="l10n_settings_screen_recalibrate_your_charge_baseline_018e3846">Deine Erholungs-Basislinie neu kalibrieren?</string>
     <string name="l10n_settings_screen_recent_changes_and_what_to_expect_3ceb660b">Jüngste Veränderungen und was zu erwarten ist</string>
     <string name="l10n_settings_screen_record_5_mg_raw_capture_9354fe89">Rekord 5/MG Rohabfang</string>
     <string name="l10n_settings_screen_record_5_mg_raw_capture_research_1d966bbf">Rekord 5/MG Rohabscheidung (Forschung)</string>
@@ -1580,7 +1580,7 @@
     <string name="l10n_settings_screen_remove_photo_c8f5eda8">Foto entfernen</string>
     <string name="l10n_settings_screen_rename_d3f4cb89">Umbenennen</string>
     <string name="l10n_settings_screen_rename_your_strap_s_bluetooth_name_6032668b">Benenne den Bluetooth-Namen deines Gurts um, der für ein Second-Hand-Band nützlich ist. Das Gurtband reboots to apply, then reconnects with the new name.</string>
-    <string name="l10n_settings_screen_restarts_the_roughly_4_night_build_84f9f8d0">Startet den etwa 4-nächtigen Aufbau für Ladung und deine HRV-Basislinie ab heute Nacht neu. Nutze es, wenn eine schlechte erste Woche deine Basislinie verzerrt hat. Dein Verlauf bleibt.</string>
+    <string name="l10n_settings_screen_restarts_the_roughly_4_night_build_84f9f8d0">Startet den etwa 4-nächtigen Aufbau für Erholung und deine HRV-Basislinie ab heute Nacht neu. Nutze es, wenn eine schlechte erste Woche deine Basislinie verzerrt hat. Dein Verlauf bleibt.</string>
     <string name="l10n_settings_screen_reviews_each_scored_wake_block_for_537924ea">Rezensiert jeden bewerteten Wake-Block auf echte Beweise für das Aufstehen (Walking Cadence, a) change in body position) instead of just a heart-rate rise. A wake block with no locomotion and a stable posture -- a hot night, a brief turn-over -- is folded back into light sleep; a real get-up is left alone. Self-checks how much motion detail your strap actually recorded and stays off on a night that\'s too sparse to trust (older WHOOP 4.0 firmware, mainly). Off by default; takes effect on the next nights staged.</string>
     <string name="l10n_settings_screen_rhythm_experimental_12d357da">Rhythmus (experimentell)</string>
     <string name="l10n_settings_screen_runs_the_continuous_hrv_stream_only_3fed47c5">Läuft den kontinuierlichen HRV-Stream nur während deines ruhigen Stundenfensters (standardmäßig 22:00-07:00 Uhr) aus und halbiert damit die Batteriekosten. Tagesstresswerte werden sparsamer sein. Note: continuous background HRV capture (including daytime naps) is paused outside this window. For on-demand daytime HRV readings (including naps), use the \"Take an HRV reading\" button on the Live screen.</string>
@@ -1609,7 +1609,7 @@
     <string name="l10n_settings_screen_test_centre_37b36828">Testzentrum</string>
     <string name="l10n_settings_screen_theme_a797e309">Design</string>
     <string name="l10n_settings_screen_this_is_a_plain_unencrypted_archive_b0dfe63d">Das ist ein einfaches, unverschlüsseltes Archiv — wer die Datei bekommt, kann sie mit jedem Zip-Programm öffnen. Bewahre sie an einem Ort auf, dem du vertraust.</string>
-    <string name="l10n_settings_screen_this_restarts_the_roughly_4_night_c610a93d">Das startet den etwa 4-nächtigen Aufbau für Ladung und deine HRV-Basislinie neu. Dein Verlauf bleibt. Nutze es, wenn eine schlechte erste Woche, etwa krank getragen, deine Basislinie verzerrt hat.</string>
+    <string name="l10n_settings_screen_this_restarts_the_roughly_4_night_c610a93d">Das startet den etwa 4-nächtigen Aufbau für Erholung und deine HRV-Basislinie neu. Dein Verlauf bleibt. Nutze es, wenn eine schlechte erste Woche, etwa krank getragen, deine Basislinie verzerrt hat.</string>
     <string name="l10n_settings_screen_trend_charts_19085c81">Trenddiagramme</string>
     <string name="l10n_settings_screen_try_history_sync_without_pairing_experimental_54c31ea2">Verlaufssynchronisierung ohne Kopplung versuchen (experimentell)</string>
     <string name="l10n_settings_screen_try_history_sync_without_pairing_33ae8594">Verlaufssynchronisierung ohne Kopplung versuchen</string>
@@ -1705,7 +1705,7 @@
     <string name="l10n_today_screen_daytitle_humandate_tap_to_pick_a_7e12ce96">%1$s, %2$s. Tippe, um einen Tag auszuwählen, wische, um den Tag zu ändern.</string>
     <string name="l10n_today_screen_detailed_tiles_0801721b">Detaillierte Fliesen</string>
     <string name="l10n_today_screen_dismiss_to_updates_2c7915b8">In „Updates“ ablegen</string>
-    <string name="l10n_today_screen_each_line_is_how_many_points_dec2c062">Jede Zeile gibt an, wie viele Punkte bewegte Ladung im Vergleich zu sitzen an deinem</string>
+    <string name="l10n_today_screen_each_line_is_how_many_points_dec2c062">Jede Zeile gibt an, wie viele Punkte bewegte Erholung im Vergleich zu sitzen an deinem</string>
     <string name="l10n_today_screen_edit_5301648d">Bearbeiten</string>
     <string name="l10n_today_screen_edit_key_metrics_f95e61a4">Kennzahlen bearbeiten</string>
     <string name="l10n_today_screen_heart_rate_variability_a137586d">Herzfrequenzvariabilität</string>
@@ -1715,7 +1715,7 @@
     <string name="l10n_today_screen_move_item_metric_title_down_890afe60">%1$s nach unten verschieben</string>
     <string name="l10n_today_screen_move_item_metric_title_up_52d2104c">%1$s nach oben verschieben</string>
     <string name="l10n_today_screen_new_data_added_e59345b4">Neue Daten hinzugefügt</string>
-    <string name="l10n_today_screen_no_cardio_load_yet_effort_builds_e952006c">Noch keine Cardio-Last. Anstrengung baut sich auf, sobald deine Herzfrequenz in deine Anstrengungszone steigt (etwa 50 % deiner Herzfrequenzreserve). Ein ruhiger Tag liest sich ehrlich nahe null.</string>
+    <string name="l10n_today_screen_no_cardio_load_yet_effort_builds_e952006c">Noch keine Cardio-Last. Belastung baut sich auf, sobald deine Herzfrequenz in deine Belastungszone steigt (etwa 50 % deiner Herzfrequenzreserve). Ein ruhiger Tag liest sich ehrlich nahe null.</string>
     <string name="l10n_today_screen_pct_ee63e247">%1$s%%</string>
     <string name="l10n_today_screen_profile_and_settings_9b3d12f2">Profil und Einstellungen</string>
     <string name="l10n_today_screen_recovery_ea924f72">Erholung</string>
@@ -1733,7 +1733,7 @@
     </plurals>
     <string name="l10n_today_screen_sync_chip_synced_desc_4d255944">Verlauf des Straps vor %1$s synchronisiert</string>
     <string name="l10n_today_screen_sync_chip_experimental_desc_3de06a70">Verbunden; die Verlaufssynchronisierung ist bei diesem Strap experimentell.</string>
-    <string name="l10n_today_screen_recovery_roundtoint_charge_92fbaa5e">%1$s%% Ladung</string>
+    <string name="l10n_today_screen_recovery_roundtoint_charge_92fbaa5e">%1$s%% Erholung</string>
     <string name="l10n_today_screen_respiratory_1cd8c175">Atmung</string>
     <string name="l10n_today_screen_rest_b79e5f48">Ruhe</string>
     <string name="l10n_today_screen_rest_hr_04005617">Ruhe-HF</string>
@@ -1747,15 +1747,15 @@
     <string name="l10n_today_screen_strain_79fe380e">Belastung</string>
     <string name="l10n_today_screen_synced_from_2aa7258b">Synchronisiert aus</string>
     <string name="l10n_today_screen_synthesis_876bc749">ZUSAMMENFASSUNG</string>
-    <string name="l10n_today_screen_unitformatter_effortdisplay_strain_effortscale_effort_53dbd951">%1$s Anstrengung</string>
+    <string name="l10n_today_screen_unitformatter_effortdisplay_strain_effortscale_effort_53dbd951">%1$s Belastung</string>
     <string name="l10n_today_screen_value_bpm_8f3a90c3">%1$s bpm</string>
     <string name="l10n_today_screen_visavg_8c9a4746">%1$s</string>
     <string name="l10n_today_screen_vismax_80b2c2fc">%1$s</string>
     <string name="l10n_today_screen_vismin_5d665ceb">%1$s</string>
     <string name="l10n_today_screen_weight_69c0b815">Gewicht</string>
     <string name="l10n_trends_explore_screen_blood_oxygen_a8ad9ff5">Blutsauerstoff</string>
-    <string name="l10n_trends_explore_screen_charge_d4e1aee4">Ladung</string>
-    <string name="l10n_trends_explore_screen_effort_8c974bc6">Anstrengung</string>
+    <string name="l10n_trends_explore_screen_charge_d4e1aee4">Erholung</string>
+    <string name="l10n_trends_explore_screen_effort_8c974bc6">Belastung</string>
     <string name="l10n_trends_explore_screen_respiratory_rate_3fbb532f">Atemfrequenz</string>
     <string name="l10n_trends_explore_screen_resting_hr_26677094">Ruhe-HF</string>
     <string name="l10n_trends_explore_screen_sleep_3cac34e6">Schlaf</string>
@@ -1786,8 +1786,8 @@
     <string name="timeline_metric_motion">Bewegung</string>
     <string name="timeline_metric_band_sleep_state">Schlafstatus des Bands</string>
     <string name="timeline_metric_movement">Bewegung</string>
-    <string name="explore_category_charge">Ladung</string>
-    <string name="explore_category_effort">Anstrengung</string>
+    <string name="explore_category_charge">Erholung</string>
+    <string name="explore_category_effort">Belastung</string>
     <string name="explore_category_rest">Ruhe</string>
     <string name="explore_category_health">Gesundheit</string>
     <string name="explore_category_heart">Herz</string>
@@ -2201,7 +2201,7 @@
     <!-- /breath protocol catalog -->
     <string name="l10n_breathe_screen_calm_me_a1b2c3d4">Beruhige mich</string>
     <!-- Home/Heute -->
-    <string name="today_section_hero">Charge / Effort / Erholung</string>
+    <string name="today_section_hero">Schlaf / Erholung / Belastung</string>
     <string name="today_section_live_session">Session starten</string>
     <string name="today_section_synthesis">Zusammenfassung</string>
     <string name="today_section_key_metrics">Wichtige Messwerte</string>
@@ -2294,9 +2294,9 @@
     <string name="today_card_hydration_subtitle">Heutige Flüssigkeit</string>
     <string name="today_card_coupled">Gesamtansicht</string>
     <string name="today_card_coupled_subtitle">Erholung, Belastung und Schlaf auf einen Blick</string>
-    <string name="today_metric_charge">Energie</string>
+    <string name="today_metric_charge">Erholung</string>
     <string name="today_metric_effort">Belastung</string>
-    <string name="today_metric_rest">Erholung</string>
+    <string name="today_metric_rest">Schlaf</string>
     <string name="today_metric_hrv">HRV</string>
     <string name="today_metric_resting_hr">Ruhepuls</string>
     <string name="today_metric_blood_oxygen">Blutsauerstoff</string>
@@ -2339,7 +2339,7 @@
     <string name="today_action_expand_full_read">Vollständige Einschätzung öffnen</string>
     <string name="today_action_full_readiness">Vollständige Bereitschaft anzeigen</string>
     <string name="today_action_hide_sources">Datenquellen ausblenden</string>
-    <string name="today_action_how_charge">So wird Energie berechnet</string>
+    <string name="today_action_how_charge">So wird Erholung berechnet</string>
     <string name="today_action_reset_hr_zoom">Herzfrequenz-Zoom zurücksetzen</string>
     <string name="today_action_see_what_shaped">Einflüsse auf %1$s anzeigen</string>
     <string name="today_action_open_detail">%1$s-Details öffnen</string>
@@ -2361,15 +2361,15 @@
     <string name="today_steps_estimated_detail">geschätzt · %1$s</string>
     <string name="today_steps_estimated_short">geschätzt</string>
     <string name="today_steps_manual_coefficient">manuell k=%1$s</string>
-    <string name="today_synthesis_charge_low">Die Energie ist niedrig.</string>
-    <string name="today_synthesis_charge_low_sleep_consistent">Die Energie ist niedrig und dein Schlaf war beständig.</string>
-    <string name="today_synthesis_charge_low_sleep_short">Die Energie ist niedrig und dein Schlaf war zu kurz.</string>
-    <string name="today_synthesis_charge_steady">Die Energie ist stabil.</string>
-    <string name="today_synthesis_charge_steady_sleep_consistent">Die Energie ist stabil und dein Schlaf war beständig.</string>
-    <string name="today_synthesis_charge_steady_sleep_short">Die Energie ist stabil, aber dein Schlaf war zu kurz.</string>
-    <string name="today_synthesis_charge_strong">Die Energie ist stark.</string>
-    <string name="today_synthesis_charge_strong_sleep_consistent">Die Energie ist stark und dein Schlaf war beständig.</string>
-    <string name="today_synthesis_charge_strong_sleep_short">Die Energie ist stark, aber dein Schlaf war zu kurz.</string>
+    <string name="today_synthesis_charge_low">Die Erholung ist niedrig.</string>
+    <string name="today_synthesis_charge_low_sleep_consistent">Die Erholung ist niedrig und dein Schlaf war beständig.</string>
+    <string name="today_synthesis_charge_low_sleep_short">Die Erholung ist niedrig und dein Schlaf war zu kurz.</string>
+    <string name="today_synthesis_charge_steady">Die Erholung ist stabil.</string>
+    <string name="today_synthesis_charge_steady_sleep_consistent">Die Erholung ist stabil und dein Schlaf war beständig.</string>
+    <string name="today_synthesis_charge_steady_sleep_short">Die Erholung ist stabil, aber dein Schlaf war zu kurz.</string>
+    <string name="today_synthesis_charge_strong">Die Erholung ist stark.</string>
+    <string name="today_synthesis_charge_strong_sleep_consistent">Die Erholung ist stark und dein Schlaf war beständig.</string>
+    <string name="today_synthesis_charge_strong_sleep_short">Die Erholung ist stark, aber dein Schlaf war zu kurz.</string>
     <string name="today_synthesis_depleted">Erschöpft</string>
     <string name="today_synthesis_low">Niedrig</string>
     <string name="today_synthesis_no_metrics">Noch keine Messwerte. Importiere deinen WHOOP-Export oder trage dein Band.</string>
@@ -2380,7 +2380,7 @@
     <string name="today_unit_ms">ms</string>
     <string name="today_unit_rpm">Atemz./Min.</string>
     <string name="today_vs_your_baseline">vs. deinem Basiswert</string>
-    <string name="today_what_drove_charge">Einflüsse auf Energie</string>
+    <string name="today_what_drove_charge">Einflüsse auf die Erholung</string>
     <string name="today_what_shaped_it">Das hat beeinflusst</string>
     <string name="today_workouts_14_days">14 Tage</string>
     <string name="today_workouts_activity">Aktivität</string>
@@ -2402,9 +2402,9 @@
     <string name="today_day_today">Heute</string>
     <string name="today_day_yesterday">Gestern</string>
     <string name="today_update_building_baseline_title">Dein Basiswert wird aufgebaut</string>
-    <string name="today_update_building_baseline_message">Energie, Belastung und Erholung werden nach einigen Nächten individuell.</string>
+    <string name="today_update_building_baseline_message">Erholung, Belastung und Schlaf werden nach einigen Nächten individuell.</string>
     <string name="today_update_scores_building_title">Live aktiv. Deine Werte werden aufgebaut.</string>
-    <string name="today_update_scores_building_message">Energie, Belastung und Erholung entstehen in den nächsten Nächten.</string>
+    <string name="today_update_scores_building_message">Erholung, Belastung und Schlaf entstehen in den nächsten Nächten.</string>
     <string name="today_pending_scores_body">Deine Live-Herzfrequenz kommt bereits vom Band. Erholung, Belastung und Schlaf entstehen in den nächsten Nächten und werden mit deinem Basiswert genauer. Für den vollständigen Verlauf kannst du deinen WHOOP-Export unter Datenquellen importieren; er wird in etwa einer Minute ergänzt.</string>
     <string name="today_live_session_running">Sitzung läuft</string>
     <string name="today_live_session_ended">Sitzung beendet</string>
@@ -2415,7 +2415,7 @@
     <string name="today_beta">BETA</string>
     <string name="today_sleep_source_last_night">%1$s · letzte Nacht</string>
     <string name="today_dashboard_editor_description">Wähle die Karten für Heute. Karten ohne Wert zeigen einen Strich.</string>
-    <string name="today_charge_driver_guidance">Jede Zeile zeigt, um wie viele Punkte dieses Signal deine Energie gegenüber deinem geräteinternen Basiswert verändert hat. Näherungswert, keine medizinische Beratung.</string>
+    <string name="today_charge_driver_guidance">Jede Zeile zeigt, um wie viele Punkte dieses Signal deine Erholung gegenüber deinem geräteinternen Basiswert verändert hat. Näherungswert, keine medizinische Beratung.</string>
     <string name="today_confidence_solid">STABIL</string>
     <string name="today_confidence_building">IM AUFBAU</string>
     <string name="today_confidence_calibrating">KALIBRIERUNG</string>
@@ -2423,7 +2423,7 @@
     <string name="today_hr_average_since_midnight">5-Minuten-Mittel | seit Mitternacht</string>
     <string name="today_hr_a11y_24_hour">Herzfrequenz über 24 Stunden</string>
     <string name="today_hr_a11y_sleep_band">Schlafbereich %1$s</string>
-    <string name="today_hr_a11y_charge_at_wake">%1$d Prozent Energie beim Aufwachen</string>
+    <string name="today_hr_a11y_charge_at_wake">%1$d Prozent Erholung beim Aufwachen</string>
     <string name="today_hr_a11y_effort_now">%1$s Belastung jetzt</string>
     <string name="today_a11y_separator">,</string>
     <string name="today_steps_activity_still">Still</string>
@@ -2499,15 +2499,15 @@
     <string name="today_driver_a11y">%1$s, %2$s, %3$s, %4$s Punkte, %5$s</string>
     <string name="scoring_guide_daily_scores">Deine Tageswerte</string>
     <string name="scoring_guide_three_scores">Die drei Werte</string>
-    <string name="scoring_guide_intro_body">NOOP gibt dir drei Tageswerte: Energie, Belastung und Erholung, jeweils von 0 bis 100. Sie werden auf deinem Gerät aus den Signalen des Straps und veröffentlichter Sportwissenschaft berechnet. Es sind eigenständige Näherungswerte, nicht WHOOPs private Werte. Daher kann die Entwicklung ähnlich sein, während die Zahlen abweichen.</string>
-    <string name="scoring_guide_charge_headline">Energie: Wie gut bist du erholt?</string>
-    <string name="scoring_guide_charge_body">Maßgeblich ist deine HRV im Vergleich zur persönlichen Basislinie. Hinzu kommen Ruheherzfrequenz, die Erholung der letzten Nacht, Atemfrequenz und Hauttemperatur. Eine höhere HRV bedeutet mehr Energie. NOOP benötigt einige Nächte, um deine Basislinie zu lernen; bis dahin wird „Kalibrierung“ angezeigt.</string>
+    <string name="scoring_guide_intro_body">NOOP gibt dir drei Tageswerte: Erholung, Belastung und Schlaf, jeweils von 0 bis 100. Sie werden auf deinem Gerät aus den Signalen des Straps und veröffentlichter Sportwissenschaft berechnet. Es sind eigenständige Näherungswerte, nicht WHOOPs private Werte. Daher kann die Entwicklung ähnlich sein, während die Zahlen abweichen.</string>
+    <string name="scoring_guide_charge_headline">Erholung: Wie gut bist du erholt?</string>
+    <string name="scoring_guide_charge_body">Maßgeblich ist deine HRV im Vergleich zur persönlichen Basislinie. Hinzu kommen Ruheherzfrequenz, der Schlaf der letzten Nacht, Atemfrequenz und Hauttemperatur. Eine höhere HRV bedeutet mehr Energie. NOOP benötigt einige Nächte, um deine Basislinie zu lernen; bis dahin wird „Kalibrierung“ angezeigt.</string>
     <string name="scoring_guide_charge_vs_whoop">Die Idee ähnelt WHOOPs Recovery-Wert. Unsere Gewichtung und Berechnung der Basislinie sind jedoch eigenständig und offen dokumentiert.</string>
     <string name="scoring_guide_effort_headline">Belastung: Wie stark hat dein Herz gearbeitet?</string>
     <string name="scoring_guide_effort_body">Belastung misst die Beanspruchung des Herz-Kreislauf-Systems. Die Herzfrequenz wird mithilfe von Herzfrequenzreserve-Zonen in einen Trainingsimpuls umgerechnet; intensive Zonen zählen stärker. Das Ergebnis liegt auf einer logarithmischen Skala von 0 bis 100. Schritte und aktive Energie bilden eine Untergrenze für lange Aktivitäten mit geringer Herz-Kreislauf-Belastung.</string>
     <string name="scoring_guide_effort_vs_whoop">Die Idee ähnelt WHOOPs Day Strain (0–21), wurde aber auf 0–100 skaliert. Eine 100 bleibt so selten wie eine 21,0.</string>
-    <string name="scoring_guide_rest_headline">Erholung: Wie erholsam war dein Schlaf?</string>
-    <string name="scoring_guide_rest_body">Erholung kombiniert Schlafdauer im Verhältnis zu deinem Bedarf, Schlafeffizienz, erholsamen Tief- und REM-Schlaf sowie die Regelmäßigkeit deiner Schlaf- und Aufwachzeiten.</string>
+    <string name="scoring_guide_rest_headline">Schlaf: Wie erholsam war dein Schlaf?</string>
+    <string name="scoring_guide_rest_body">Schlaf kombiniert Schlafdauer im Verhältnis zu deinem Bedarf, Schlafeffizienz, erholsamen Tief- und REM-Schlaf sowie die Regelmäßigkeit deiner Schlaf- und Aufwachzeiten.</string>
     <string name="scoring_guide_rest_vs_whoop">Die Idee ähnelt WHOOPs Sleep Performance; unsere Berechnung ist jedoch eigenständig.</string>
     <string name="scoring_guide_solid">Stabil</string>
     <string name="scoring_guide_building">Im Aufbau</string>
@@ -2518,7 +2518,7 @@
     <string name="trends_tl_established">42-Tage-Fitness vs. 7-Tage-Ermüdung</string>
     <string name="trends_tl_building">Wird aufgebaut — %1$d von %2$d Tagen</string>
     <string name="trends_tl_unavailable">Chronische vs. akute Last</string>
-    <string name="trends_tl_needs">Benötigt %1$d+ aufeinanderfolgende Tage mit Anstrengung, um zu starten. Bisher %2$d.</string>
+    <string name="trends_tl_needs">Benötigt %1$d+ aufeinanderfolgende Tage mit Belastung, um zu starten. Bisher %2$d.</string>
     <string name="trends_tl_form">Tagesform</string>
     <string name="sleep_delete_user_edited_body">Entfernt diesen Schlaf und berechnet den Tag ohne ihn neu. Du kannst dies für ein paar Sekunden rückgängig machen.</string>
     <string name="sleep_delete_recorded_body">Entfernt diesen aufgezeichneten Schlaf und berechnet den Tag ohne ihn neu. NOOP erkennt in diesem Zeitfenster keinen Schlaf mehr. Du kannst dies für ein paar Sekunden rückgängig machen.</string>
@@ -2620,8 +2620,8 @@
     <string name="workout_action_paused">Pausiert</string>
     <string name="workout_delete_title">Dieses Workout löschen?</string>
     <string name="workout_delete_message">Dadurch wird die Aufzeichnung beendet und das Workout endgültig verworfen.</string>
-    <string name="l10n_settings_screen_effort_exponential_scale">Anstrengung: exponentielle Intensitätsskala</string>
-    <string name="l10n_settings_screen_effort_exponential_scale_desc">Bewertet die Anstrengung mit einer exponentiellen Intensitätskurve (Banister-TRIMP) statt der voreingestellten Herzfrequenzzonen (Edwards). Die Voreinstellung zählt nichts unter der Hälfte deiner Herzfrequenzreserve, sodass eine Stunde Krafttraining – bei der sich harte Sätze mit den Pausen ausmitteln – nahezu null ergeben kann. Die exponentielle Kurve hat keine Untergrenze und gewichtet kurze, intensive Belastungen deutlich stärker. Bewertet deine Historie neu; beide Skalen erreichen dasselbe Maximum. Standardmäßig aus.</string>
+    <string name="l10n_settings_screen_effort_exponential_scale">Belastung: exponentielle Intensitätsskala</string>
+    <string name="l10n_settings_screen_effort_exponential_scale_desc">Bewertet die Belastung mit einer exponentiellen Intensitätskurve (Banister-TRIMP) statt der voreingestellten Herzfrequenzzonen (Edwards). Die Voreinstellung zählt nichts unter der Hälfte deiner Herzfrequenzreserve, sodass eine Stunde Krafttraining – bei der sich harte Sätze mit den Pausen ausmitteln – nahezu null ergeben kann. Die exponentielle Kurve hat keine Untergrenze und gewichtet kurze, intensive Belastungen deutlich stärker. Bewertet deine Historie neu; beide Skalen erreichen dasselbe Maximum. Standardmäßig aus.</string>
     <string name="l10n_app_changelog_an_effort_scale_you_choose_a_a7c2478d">Eine Effort-Skala nach Wahl, ein Ring, der schlafen darf, und weit weniger vergebliche Neuberechnungen</string>
     <string name="l10n_health_screen_this_vital_needs_at_least_two_0e41b8b0">Für dieses Vitalzeichen braucht NOOP mindestens zwei historische Messwerte, um es darzustellen.</string>
     <string name="l10n_health_screen_the_blood_oxygen_estimate_is_turned_4c403ab2">Die Sauerstoffsättigungs-Schätzung ist deaktiviert</string>
@@ -2735,7 +2735,7 @@
     <string name="l10n_health_screen_only_nights_with_a_measured_temperature_are_shown_the_others_b6f7c45b">Es werden nur Nächte mit gemessener Temperatur angezeigt; für die übrigen wurde nur eine Abweichung vom Basiswert erfasst.</string>
     <string name="l10n_today_screen_this_night_was_staged_from_heart_rate_4d0f1f9b">Diese Nacht wurde allein anhand der Herzfrequenz ausgewertet, ohne aufgezeichnete Bewegung, daher konnten Herzfrequenzvariabilität und Ruheherzfrequenz nicht gemessen werden. Ein nicht vollständig gekoppelter Strap ist die übliche Ursache.</string>
     <string name="settings_day_cycle_title">Tageszyklus</string>
-    <string name="settings_day_cycle_description">Lege fest, wann Schritte und die laufende Anstrengung neu beginnen. Nickerchen starten keinen neuen Tag.</string>
+    <string name="settings_day_cycle_description">Lege fest, wann Schritte und die laufende Belastung neu beginnen. Nickerchen starten keinen neuen Tag.</string>
     <string name="settings_day_cycle_starts">Tagesbeginn</string>
     <string name="settings_day_cycle_sleep">Hauptschlaf</string>
     <string name="settings_day_cycle_midnight">00:00</string>
@@ -2801,7 +2801,7 @@
     <string name="widget_stress_name">NOOP Stress</string>
     <string name="hosted_card_stress_title">Stress im Tagesverlauf</string>
     <string name="widget_stress_description">Der heutige Stress als Stundenverlauf.</string>
-    <string name="l10n_today_screen_see_the_charge_trend_9dcbcff7">Ladungs-Trend ansehen</string>
+    <string name="l10n_today_screen_see_the_charge_trend_9dcbcff7">Erholungs-Trend ansehen</string>
     <string name="l10n_today_screen_every_day_s_score_over_time_a00ea7c7">Jeder Tageswert im Zeitverlauf.</string>
     <string name="l10n_app_changelog_a_coach_that_keeps_the_thread_2ee52e0c">Ein Coach, der den Faden behält, deine Herzfrequenz auf dem Homescreen und Diagramme, die weniger behaupten</string>
     <string name="charge_legacy_rr_gap_title">Frühere Herzschläge nicht auswertbar</string>
@@ -2809,7 +2809,7 @@
     <string name="coach_key_rejected_hint">Füge den korrigierten Schlüssel ein. Deine Unterhaltung bleibt erhalten.</string>
     <string name="coach_key_rejected_placeholder">%1$s-Schlüssel einfügen</string>
     <string name="coach_key_rejected_action">Schlüssel aktualisieren</string>
-    <string name="coach_consent_on">An: Ladung, Erholung, HRV und Workouts gehen an den Anbieter, jedes Workout mit Sportart, Dauer, Distanz und Herzfrequenz.</string>
+    <string name="coach_consent_on">An: Erholung, Schlaf, HRV und Workouts gehen an den Anbieter, jedes Workout mit Sportart, Dauer, Distanz und Herzfrequenz.</string>
     <string name="coach_consent_off">Aus: Der Coach antwortet allgemein und sendet keine deiner Werte.</string>
     <string name="l10n_app_changelog_a_today_screen_you_arrange_yourself_6194ccd0">Ein Heute-Bildschirm, den du selbst zusammenstellst, Stress auf dem Homescreen und Backups, die sich selbst prüfen</string>
     <string name="l10n_stress_screen_scored_through_1_s_later_hours_fbb7d6c7">Bewertet bis %1$s. Spätere Stunden brauchen mehr Herzfrequenz-Messwerte.</string>

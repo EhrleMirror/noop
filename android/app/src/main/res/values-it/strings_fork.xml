@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Fork: score names of the Strap-look hero. Everything else of the fork falls back to English. -->
+<resources>
+    <string name="fork_hero_sleep">Sonno</string>
+    <string name="fork_hero_recovery">Recupero</string>
+    <string name="fork_hero_strain">Sforzo</string>
+</resources>
