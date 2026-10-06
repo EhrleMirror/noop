@@ -39,8 +39,13 @@ jobs:
       - uses: gradle/actions/wrapper-validation@v5
       - uses: gradle/actions/setup-gradle@v5
 
-      - name: Build APKs
-        run: ./gradlew assembleFullRelease assembleDemoRelease -PstagingRelease
+      # Two invocations with a 4 GB Gradle heap: building both release variants in one go ran the
+      # default 2 GB daemon out of heap.
+      - name: Build APK (full)
+        run: ./gradlew assembleFullRelease -PstagingRelease -Dorg.gradle.jvmargs="-Xmx4096m -Dfile.encoding=UTF-8"
+
+      - name: Build APK (demo)
+        run: ./gradlew assembleDemoRelease -PstagingRelease -Dorg.gradle.jvmargs="-Xmx4096m -Dfile.encoding=UTF-8"
 
       - name: Collect APKs
         run: |

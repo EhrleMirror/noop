@@ -27,6 +27,8 @@ concurrency:
 
 jobs:
   check:
+    # Personal fork: these upstream governance checks only apply to ryanbr/noop.
+    if: github.repository == 'ryanbr/noop'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
