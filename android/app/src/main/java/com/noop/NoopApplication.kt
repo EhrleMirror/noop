@@ -59,6 +59,28 @@ class NoopApplication : Application() {
         // case it exists for is a strap that stopped talking. Scheduled here rather than beside a widget
         // so it does not inherit that widget's lifecycle. KEEP, so this is a no-op once scheduled.
         com.noop.notif.StaleBatteryWorker.ensureScheduled(this)
+        // Fork: track whether any NOOP activity is visible, so the background-sync worker never drops a
+        // link the user is looking at. Registered before anything can start an activity.
+        registerActivityLifecycleCallbacks(foregroundTracker)
+        // Fork: periodic background sync without the always-on connection. KEEP, so a no-op once scheduled.
+        com.noop.ble.BackgroundSyncWorker.ensureScheduled(this)
+    }
+
+    @Volatile private var startedActivities = 0
+
+    /** Fork: true while at least one NOOP activity is started (visible). Main-thread maintained. */
+    val isAppInForeground: Boolean get() = startedActivities > 0
+
+    private val foregroundTracker = object : Application.ActivityLifecycleCallbacks {
+        override fun onActivityStarted(activity: android.app.Activity) { startedActivities++ }
+        override fun onActivityStopped(activity: android.app.Activity) {
+            startedActivities = (startedActivities - 1).coerceAtLeast(0)
+        }
+        override fun onActivityCreated(activity: android.app.Activity, savedInstanceState: android.os.Bundle?) {}
+        override fun onActivityResumed(activity: android.app.Activity) {}
+        override fun onActivityPaused(activity: android.app.Activity) {}
+        override fun onActivitySaveInstanceState(activity: android.app.Activity, outState: android.os.Bundle) {}
+        override fun onActivityDestroyed(activity: android.app.Activity) {}
     }
 
     /** Process-wide Room-backed store. One instance shared by the UI and the background service. */

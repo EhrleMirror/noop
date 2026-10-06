@@ -41,4 +41,7 @@
     <string name="fork_hero_recovery">Erholung</string>
     <string name="fork_hero_strain">Belastung</string>
     <string name="fork_strap_theme_note">Der Strap-Look nutzt immer das dunkle Design.</string>
+    <!-- Regelmäßige Hintergrund-Synchronisierung -->
+    <string name="fork_periodic_sync">Alle 15 Minuten synchronisieren</string>
+    <string name="fork_periodic_sync_desc">Verbindet sich etwa alle 15 Minuten kurz mit dem Band, holt neue Daten ab und trennt danach wieder, ohne dauerhafte Benachrichtigung. Im Ruhezustand (z. B. nachts) kann Android die Abstände verlängern.</string>
 </resources>

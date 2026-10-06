@@ -696,6 +696,8 @@ fun SettingsScreen(
     // "Keep connected in the background" — drives WhoopConnectionService (foreground service). Default
     // on. SharedPreferences isn't reactive, so the Switch mirrors into a local state.
     var backgroundConnection by remember { mutableStateOf(NoopPrefs.backgroundConnection(context)) }
+    // Fork: "Sync every 15 minutes" — the middle ground when the always-on connection is off.
+    var periodicSync by remember { mutableStateOf(com.noop.ble.BackgroundSyncWorker.isEnabled(context)) }
     var fastHistorySync by remember { mutableStateOf(NoopPrefs.fastHistorySync(context)) }
     var fastLinkPhy by remember { mutableStateOf(NoopPrefs.fastLinkPhy(context)) }
 
@@ -2300,6 +2302,44 @@ fun SettingsScreen(
                             uncheckedBorderColor = Palette.hairline,
                         ),
                     )
+                }
+
+                // Fork: periodic background sync (BackgroundSyncWorker). Only meaningful while the
+                // always-on connection is off — with it on, the foreground service already offloads
+                // every 15 minutes — so the row is shown only then.
+                if (!backgroundConnection) {
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.spacedBy(16.dp),
+                    ) {
+                        Column(modifier = Modifier.weight(1f)) {
+                            Text(
+                                stringResource(R.string.fork_periodic_sync),
+                                style = NoopType.subhead,
+                                color = Palette.textPrimary,
+                            )
+                            Text(
+                                stringResource(R.string.fork_periodic_sync_desc),
+                                style = NoopType.footnote,
+                                color = Palette.textTertiary,
+                            )
+                        }
+                        Switch(
+                            checked = periodicSync,
+                            onCheckedChange = {
+                                periodicSync = it
+                                com.noop.ble.BackgroundSyncWorker.setEnabled(context, it)
+                            },
+                            colors = SwitchDefaults.colors(
+                                checkedThumbColor = Palette.surfaceBase,
+                                checkedTrackColor = Palette.accent,
+                                uncheckedThumbColor = Palette.textSecondary,
+                                uncheckedTrackColor = Palette.surfaceInset,
+                                uncheckedBorderColor = Palette.hairline,
+                            ),
+                        )
+                    }
                 }
 
                 // "Faster history sync" (#533, EXPERIMENTAL): asks Android for a shorter GATT connection

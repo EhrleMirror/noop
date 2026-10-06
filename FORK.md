@@ -20,6 +20,13 @@ Lizenz unverändert: PolyForm Noncommercial 1.0.0 – private, nicht-kommerziell
 - Deutsche Begriffe vereinheitlicht: Erholung (vorher Energie/Ladung), Belastung (vorher Anstrengung), Schlaf (vorher Erholung/Ruhe).
 - Wird beim ersten Start einmalig aktiviert. Zurück zum Original-Look: Einstellungen → Erscheinungsbild → Vorlage (oder „Diagrammfarben“ → Standard).
 
+### 3. Hintergrund-Sync alle 15 Minuten (ohne Dauerverbindung)
+- Neue Einstellung **Alle 15 Minuten synchronisieren** (Einstellungen, direkt unter „Bleibe im Hintergrund verbunden“; nur sichtbar, wenn die Dauerverbindung aus ist). Standardmäßig an.
+- Ein WorkManager-Job verbindet sich etwa alle 15 Minuten direkt mit dem gespeicherten Band, lässt die normale Verlaufs-Übertragung bis zum Ende laufen und trennt danach wieder – ohne dauerhafte Benachrichtigung und ohne den Akkuverbrauch einer Dauerverbindung.
+- Ist NOOP gerade geöffnet oder die Dauerverbindung an, fasst der Job die Verbindung nicht an.
+- 15 Minuten sind das Minimum von Android. Im Ruhezustand (z. B. nachts) bündelt Android Hintergrund-Jobs, dann werden die Abstände länger. Eine Ausnahme von der Akku-Optimierung für NOOP verkürzt das.
+- Dateien: neu `ble/BackgroundSyncWorker.kt` (+ Test `ble/BackgroundSyncPolicyTest.kt`); angepasst `ble/WhoopBleClient.kt` (`endBackgroundSync()`), `NoopApplication.kt` (Planung + Vordergrund-Erkennung), `ui/SettingsScreen.kt`, `res/values*/strings_fork.xml`.
+
 ## APK bauen
 
 **Android Studio:** Ordner `android/` öffnen, Build-Variante `fullDebug` wählen, „Run“ – oder **Build → Build APK(s)**. Ergebnis: `android/app/build/outputs/apk/full/debug/app-full-debug.apk` (installiert als `com.noop.whoop.debug` neben einer eventuell vorhandenen Original-App).

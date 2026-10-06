@@ -4405,6 +4405,23 @@ class WhoopBleClient(
     }
 
     /**
+     * Fork: end a [BackgroundSyncWorker] run. A live link goes through the normal [disconnect]. A
+     * passive autoConnect that never came up is closed directly as well: Android does not reliably
+     * deliver a DISCONNECTED callback for a connection that was never established, and a leaked pending
+     * [gatt] would turn every later [reconnectToAddress] into a no-op.
+     */
+    fun endBackgroundSync() {
+        handler.post {
+            val linkUp = _state.value.connected
+            disconnect()
+            if (!linkUp && gatt != null) {
+                log("Background sync: strap never came up — closing the pending connect")
+                teardownAfterGattFailure()
+            }
+        }
+    }
+
+    /**
      * Send a command to the strap.
      * Port of `BLEManager.send(_:payload:writeType:)` — builds the framed COMMAND packet via
      * [Framing.buildCommand] and writes it to the command characteristic (61080002).

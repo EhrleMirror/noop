@@ -45,4 +45,7 @@
     <string name="fork_hero_recovery">Recovery</string>
     <string name="fork_hero_strain">Strain</string>
     <string name="fork_strap_theme_note">The Strap look always uses the dark theme.</string>
+    <!-- Periodic background sync -->
+    <string name="fork_periodic_sync">Sync every 15 minutes</string>
+    <string name="fork_periodic_sync_desc">Briefly connects to your strap about every 15 minutes, pulls new data and disconnects again, without an ongoing notification. While the phone is idle (e.g. at night) Android may stretch the interval.</string>
 </resources>
