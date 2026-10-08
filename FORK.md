@@ -27,6 +27,12 @@ Lizenz unverändert: PolyForm Noncommercial 1.0.0 – private, nicht-kommerziell
 - 15 Minuten sind das Minimum von Android. Im Ruhezustand (z. B. nachts) bündelt Android Hintergrund-Jobs, dann werden die Abstände länger. Eine Ausnahme von der Akku-Optimierung für NOOP verkürzt das.
 - Dateien: neu `ble/BackgroundSyncWorker.kt` (+ Test `ble/BackgroundSyncPolicyTest.kt`); angepasst `ble/WhoopBleClient.kt` (`endBackgroundSync()`), `NoopApplication.kt` (Planung + Vordergrund-Erkennung), `ui/SettingsScreen.kt`, `res/values*/strings_fork.xml`.
 
+### 4. Zum Synchronisieren nach unten ziehen
+- Auf **Heute** die Ansicht nach unten ziehen startet einen manuellen Band-Sync mit Aktualisieren-Animation (kurzes haptisches Feedback beim Auslösen).
+- Funktioniert auch ohne Dauerverbindung: Ist das Band nicht verbunden, verbindet sich NOOP mit dem gespeicherten Band (bis 30 s), fordert eine manuelle Übertragung an und lässt den Kreis drehen, bis sie fertig ist (höchstens 60 s, danach läuft sie im Hintergrund weiter).
+- Läuft schon eine Übertragung, folgt die Animation ihr nur. Klappt die Verbindung nicht, erscheint ein kurzer Hinweis (Band nicht erreichbar, Bluetooth aus, kein Band gespeichert).
+- Dateien: neu `ui/PullToSync.kt` (+ Test `ui/PullToSyncStartTest.kt`); angepasst `ui/TodayScreen.kt`, `res/values*/strings_fork.xml`.
+
 ## APK bauen
 
 **Android Studio:** Ordner `android/` öffnen, Build-Variante `fullDebug` wählen, „Run“ – oder **Build → Build APK(s)**. Ergebnis: `android/app/build/outputs/apk/full/debug/app-full-debug.apk` (installiert als `com.noop.whoop.debug` neben einer eventuell vorhandenen Original-App).

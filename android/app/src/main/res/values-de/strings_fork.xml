@@ -44,4 +44,9 @@
     <!-- Regelmäßige Hintergrund-Synchronisierung -->
     <string name="fork_periodic_sync">Alle 15 Minuten synchronisieren</string>
     <string name="fork_periodic_sync_desc">Verbindet sich etwa alle 15 Minuten kurz mit dem Band, holt neue Daten ab und trennt danach wieder, ohne dauerhafte Benachrichtigung. Im Ruhezustand (z. B. nachts) kann Android die Abstände verlängern.</string>
+    <!-- Zum Synchronisieren nach unten ziehen -->
+    <string name="fork_pull_sync_unreachable">Band nicht erreichbar. Ist es in der Nähe und nicht mit einer anderen App verbunden?</string>
+    <string name="fork_pull_sync_no_strap">Noch kein Band gespeichert. Verbinde es zuerst unter Geräte.</string>
+    <string name="fork_pull_sync_bluetooth_off">Bluetooth ist aus oder NOOP fehlt die Berechtigung „Geräte in der Nähe“.</string>
+    <string name="fork_pull_sync_continues">Die Synchronisierung läuft im Hintergrund weiter.</string>
 </resources>

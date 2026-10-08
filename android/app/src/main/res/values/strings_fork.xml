@@ -48,4 +48,9 @@
     <!-- Periodic background sync -->
     <string name="fork_periodic_sync">Sync every 15 minutes</string>
     <string name="fork_periodic_sync_desc">Briefly connects to your strap about every 15 minutes, pulls new data and disconnects again, without an ongoing notification. While the phone is idle (e.g. at night) Android may stretch the interval.</string>
+    <!-- Pull to sync -->
+    <string name="fork_pull_sync_unreachable">Strap not reachable. Is it nearby and not connected to another app?</string>
+    <string name="fork_pull_sync_no_strap">No strap saved yet. Connect it under Devices first.</string>
+    <string name="fork_pull_sync_bluetooth_off">Bluetooth is off or NOOP is missing the Nearby devices permission.</string>
+    <string name="fork_pull_sync_continues">Still syncing, this continues in the background.</string>
 </resources>
